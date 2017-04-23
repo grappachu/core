@@ -1,7 +1,9 @@
 *.suo
 *.resharper
 *.user
+*.nupkg
 src/Grappachu.Core/bin/*
 src/Grappachu.Core/obj/*
 src/Grappachu.Core.Test/bin/*
 src/Grappachu.Core.Test/obj/*
+
