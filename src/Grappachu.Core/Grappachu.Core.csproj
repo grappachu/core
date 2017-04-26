@@ -196,9 +196,10 @@
     <RemoveDir Directories="NuGet" />
     <MakeDir Directories="NuGet" />
     <!-- Package the project -->
-    <Exec WorkingDirectory="$(BuildDir)" Command="X:\Sync\Git\grappachu-core\Src\.nuget\NuGet.exe pack Grappachu.Core.nuspec -Verbosity detailed -Symbols -OutputDir &quot;NuGet&quot; -Version %(OutputAssemblyInfo.Version) -Properties &quot;Configuration=$(Configuration)&quot;" />
+    <Exec WorkingDirectory="$(BuildDir)" 
+	Command="$(ProjectDir)..\.nuget\NuGet.exe pack Grappachu.Core.nuspec -Verbosity detailed -Symbols -OutputDir &quot;NuGet&quot; -Version %(OutputAssemblyInfo.Version) -Properties &quot;Configuration=$(Configuration)&quot;" />
   </Target>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(ProjectDir)..\..\.nuget\NuGet.targets" Condition="Exists('$(ProjectDir)..\..\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
   </Target>
 </Project>
