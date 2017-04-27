@@ -1,41 +1,36 @@
-﻿namespace Grappachu.Core.Security.Hashing
+﻿using System.IO;
+
+namespace Grappachu.Core.Security.Hashing
 {
     /// <summary>
-    /// Rappresenta un componente per l'hashing di stringhe e file
+    ///     Defines a component for compute hash of data
     /// </summary>
     public interface IHashProvider
     {
-
         /// <summary>
-        /// Specifica il formato dell'output
-        /// </summary>
-        OutputEncoding OutputFormat { get; set; }
-
-        /// <summary>
-        /// Ottiene il tipo di algoritmo utilizzato da questo provider
+        ///     Gests the hashing algorythm used by this provider to compute hashes
         /// </summary>
         HashAlgorythm Algorythm { get; }
 
         /// <summary>
-        /// Esegue l'hash di un file
+        ///     Computes the hash for a file
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="file">File to be hashed</param>
         /// <returns></returns>
-        string HashFile(string filename);
+        byte[] Hash(FileInfo file);
 
         /// <summary>
-        /// Esegue l'hash di una stringa
+        ///     Computes the hash for a string
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        string HashString(string text);
+        byte[] Hash(string text);
 
         /// <summary>
-        /// Esegue l'hash di un array di byte
+        ///     Computes the hash for a byte array
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        string HashBytes(byte[] bytes);
-
+        byte[] Hash(byte[] bytes);
     }
 }

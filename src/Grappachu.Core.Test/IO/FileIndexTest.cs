@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Grappachu.Core.IO;
+using Grappachu.Core.Preview.IO;
 using Grappachu.Core.Security;
 using Moq;
 using NUnit.Framework;
@@ -11,12 +11,12 @@ using SharpTestsEx;
 namespace Grappachu.Core.Test.IO
 {
     [TestFixture]
-    internal class FileIndexTest
+    internal class FileIndexTest : IDisposable
     {
         [SetUp]
         public void SetUp()
         {
-            _keyGenerator =  new Mock<IKeyGenerator<string, string>>();
+            _keyGenerator = new Mock<IKeyGenerator<string, string>>();
 
             _f1 = Path.GetTempFileName();
             _f2 = Path.GetTempFileName();
@@ -66,7 +66,7 @@ namespace Grappachu.Core.Test.IO
         private FileIndex _sut;
 
 
-        private Mock< IKeyGenerator<string, string>> _keyGenerator;
+        private Mock<IKeyGenerator<string, string>> _keyGenerator;
         private IFileEnumerator _enumerator;
 
         [Test]
@@ -161,11 +161,10 @@ namespace Grappachu.Core.Test.IO
             _sut.ItemsCount.Should().Be(4);
         }
 
-
-
-
-
-
+        public void Dispose()
+        {
+            _sut.Dispose();
+        }
     }
 
 

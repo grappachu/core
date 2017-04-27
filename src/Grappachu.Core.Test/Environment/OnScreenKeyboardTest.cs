@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Grappachu.Core.Environment.Keyboard;
+using Grappachu.Core.Preview.Environment.Keyboard;
 using NUnit.Framework;
 using SharpTestsEx;
 
@@ -47,7 +47,7 @@ namespace Grappachu.Core.Test.Environment
             Thread.Sleep(1000); // Need some timeout to be displayed
 
            // res.Should().Be.False();
-            //OnScreenKeyboard.IsVisible.Should().Be.True();
+            OnScreenKeyboard.IsVisible.Should().Be.True();
         }
 
 
@@ -59,8 +59,8 @@ namespace Grappachu.Core.Test.Environment
             var res = OnScreenKeyboard.Hide();
             Thread.Sleep(1000); // Need some timeout to be destroyed
 
-            //res.Should().Be.True();
-            //OnScreenKeyboard.IsVisible.Should().Be.False();
+            res.Should().Be.True();
+            OnScreenKeyboard.IsVisible.Should().Be.False();
         }
 
 
@@ -72,12 +72,12 @@ namespace Grappachu.Core.Test.Environment
             var res = OnScreenKeyboard.Hide();
             Thread.Sleep(1000); // Need some timeout to be destroyed
 
-            //res.Should().Be.False();
-            //OnScreenKeyboard.IsVisible.Should().Be.False();
+            res.Should().Be.False();
+            OnScreenKeyboard.IsVisible.Should().Be.False();
         }
 
 
-        private static void ShowKeyboard()
+        private void ShowKeyboard()
         {
             var root = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonProgramFiles);
             var vkPath = Path.Combine(root, @"Microsoft Shared\ink\TabTip.exe");

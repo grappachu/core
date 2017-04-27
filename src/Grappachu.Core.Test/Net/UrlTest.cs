@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Grappachu.Core.Preview.Net;
+using NUnit.Framework;
 
 namespace Grappachu.Core.Test.Net
 {
@@ -16,7 +17,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("/url/Part/", "/another/Part/", ExpectedResult = "/url/Part/another/Part/")]
         public string Should_Combine_Url_Portions(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 
@@ -25,7 +26,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("https://www.testwebsite862493.com", "", ExpectedResult = "https://www.testwebsite862493.com/")]
         public string Should_Add_Slashes_For_Roots(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 
@@ -36,7 +37,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("http://www.testwebsite862493.com/TestPage.htm", "", ExpectedResult = "http://www.testwebsite862493.com/TestPage.htm")]
         public string Should_Not_Add_Slashes_For_Pages(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 
@@ -45,7 +46,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("http://www.testwebsite862493.com/TestPage.htm?p=1", "", ExpectedResult = "http://www.testwebsite862493.com/TestPage.htm?p=1")]
         public string Should_Preserve_Well_Formed_Urls(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 
@@ -59,7 +60,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("http://www.testwebsite00008.com/my/Test/rOOt/", "Page.aspx?q=23,6", ExpectedResult = "http://www.testwebsite00008.com/my/Test/rOOt/Page.aspx?q=23,6")]
         public string Should_Combine_Root_And_Path_Handling_Slashes(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 
@@ -70,7 +71,7 @@ namespace Grappachu.Core.Test.Net
         [TestCase("http://www.testwebsite00005.com/Page", "?query=true", ExpectedResult = "http://www.testwebsite00005.com/Page?query=true")]
         public string Should_Combine_Path_And_Query(string part1, string part2)
         {
-            string result = Core.Net.Url.Combine(part1, part2);
+            string result = Url.Combine(part1, part2);
             return result;
         }
 

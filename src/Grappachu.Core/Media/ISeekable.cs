@@ -3,27 +3,12 @@
 namespace Grappachu.Core.Media
 {
     /// <summary>
-    ///     Rappresenta un oggetto con funzionalità di controllo temporale
+    ///     Defines a component capable of locate a point in a time interval
     /// </summary>
-    public interface ISeekable : IPlayable
+    public interface ISeekable : ITimeable
     {
         /// <summary>
-        ///     Ottiene la posizione dell'iterazione corrente
-        /// </summary>
-        TimeSpan Position { get; }
-
-        /// <summary>
-        ///     Ottiene la durata del contenuto in riproduzione
-        /// </summary>
-        TimeSpan Duration { get; }
-
-        /// <summary>
-        ///     Indica se il controllo supporta il seek
-        /// </summary>
-        bool CanSeek();
-
-        /// <summary>
-        ///     Aggiorna la riproduzione di un contenuto all'istante specificato
+        ///     Updates the current position for the <see cref="ISeekable" /> object
         /// </summary>
         /// <param name="time"></param>
         void Seek(TimeSpan time);

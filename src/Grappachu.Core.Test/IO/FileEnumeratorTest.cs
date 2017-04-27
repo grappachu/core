@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Grappachu.Core.IO;
+using Grappachu.Core.Preview.IO;
 using NUnit.Framework;
 using SharpTestsEx;
 

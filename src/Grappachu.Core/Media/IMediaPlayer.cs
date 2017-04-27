@@ -1,25 +1,22 @@
 ﻿namespace Grappachu.Core.Media
 {
     /// <summary>
-    ///     Rappresenta un componente per la riproduzione di elementi multimediali
+    ///     Extends the <see cref="IPlayable" /> interface with functions for handling different media contents
     /// </summary>
-    public interface IMediaPlayer : ISeekable
+    public interface IMediaPlayer<T> : IPlayable where T : IMediaSource
     {
         /// <summary>
-        ///     Verifica se un contenutò è supportato e può essere caricato
+        ///     Gets or sets the media content for the <see cref="IMediaPlayer{T}" />
         /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        bool CanOpen(IMediaSource content);
+        T Source { get; }
 
         /// <summary>
-        ///     Carica un contenuto
+        ///     Loads a media item
         /// </summary>
-        /// <param name="content">Contenuto da caricare</param>
-        void Open(IMediaSource content);
+        void Open(T content);
 
         /// <summary>
-        ///     Scarica il contenuto e rilascia le risorse associate a questo oggetto
+        ///     Uunloads the current media item releasing resources
         /// </summary>
         void Close();
     }

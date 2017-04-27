@@ -1,50 +1,49 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace Grappachu.Core.Security.Hashing
 {
     /// <summary>
-    /// Componente per l'hashing con algoritmo Md5
+    ///     Defines a component for computing hashes based on MD5 Algorythm
     /// </summary>
     public class MD5 : IHashProvider
     {
-
         #region Implementation of IHashProvider
 
         /// <summary>
-        /// Specifica il formato dell'output
+        ///     Gests the hashing algorythm used by this provider to compute hashes
         /// </summary>
-        public OutputEncoding OutputFormat { get; set; }
+        public HashAlgorythm Algorythm => HashAlgorythm.MD5;
+
 
         /// <summary>
-        /// Ottiene il tipo di algoritmo utilizzato da questo provider
+        ///     Computes the hash for a file using the MD5 Algorythm
         /// </summary>
-        public HashAlgorythm Algorythm { get { return HashAlgorythm.MD5; } }
-
-        /// <summary>
-        /// Calcola l'hash di un file utilizzando l'algoritmo MD5
-        /// </summary>
-        /// <param name="filename">File di cui calcorale l'hash</param>
+        /// <param name="file">File to be hashed</param>
         /// <returns></returns>
-        /// <remarks></remarks>
-        public string HashFile(string filename)
+        public byte[] Hash(FileInfo file)
         {
-            return MD5File(filename);
+            return MD5File(file);
         }
 
+
         /// <summary>
-        /// Calcola l'hash di una stringa utilizzando l'algoritmo MD5
+        ///     Computes the hash for a string using the MD5 Algorythm
         /// </summary>
-        public string HashString(string value)
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public byte[] Hash(string text)
         {
-            return MD5Bytes(Encoding.Default.GetBytes(value));
+            return MD5Bytes(Encoding.Default.GetBytes(text));
         }
 
+
         /// <summary>
-        /// Calcola l'hash di un array di byte utilizzando l'algoritmo MD5
-        /// </summary> 
-        public string HashBytes(byte[] bytes)
+        ///     Computes the hash for a byte array using the MD5 Algorythm
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public byte[] Hash(byte[] bytes)
         {
             return MD5Bytes(bytes);
         }
@@ -53,24 +52,7 @@ namespace Grappachu.Core.Security.Hashing
 
         #region Private Methods
 
-        private string Print(byte[] hashbytes)
-        {
-            switch (OutputFormat)
-            {
-                case OutputEncoding.Base64:
-                    return Convert.ToBase64String(hashbytes);
-                case OutputEncoding.Hex:
-                    var sBuilder = new StringBuilder();
-                    foreach (byte b in hashbytes)
-                    {
-                        sBuilder.Append(b.ToString("x2"));
-                    }
-                    return sBuilder.ToString();
-            }
-            throw new NotSupportedException("Unknown encoding");
-        }
-
-        private string MD5Bytes(byte[] bytes)
+        private static byte[] MD5Bytes(byte[] bytes)
         {
             // Create a new instance of the MD5CryptoServiceProvider object.
             byte[] data;
@@ -79,28 +61,23 @@ namespace Grappachu.Core.Security.Hashing
                 data = md5Hasher.ComputeHash(bytes);
             }
 
-            return Print(data);
+            return data;
         }
 
-        private string MD5File(string filename)
+        private static byte[] MD5File(FileInfo file)
         {
-            string retValue;
-            using (var fs = File.OpenRead(filename))
+            byte[] mHash;
+            using (var fs = file.OpenRead())
             {
                 // definizione del nostro tipo
-                byte[] mHash;
                 using (var sscMd5 = System.Security.Cryptography.MD5.Create())
                 {
                     mHash = sscMd5.ComputeHash(fs);
                 }
-
-                retValue = Print(mHash);
             }
-            return retValue;
+            return mHash;
         }
 
         #endregion
-
-
     }
 }

@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using Grappachu.Core.Net.Tcp;
+using Grappachu.Core.Preview.Net.Tcp;
 using NUnit.Framework;
 using SharpTestsEx;
 
 namespace Grappachu.Core.Test.Net.Tcp
 {
     [TestFixture]
-    class SocketListenerTest
+    class SocketListenerTest : IDisposable
     {
-        private const int PORT = 11342;
+        private const int Port = 11342;
         private SocketListener _sut;
 
         [SetUp]
         public void SetUp()
         {
-            _sut = new SocketListener(IPAddress.Any, PORT);
+            _sut = new SocketListener(IPAddress.Any, Port);
         }
 
         [TearDown]
@@ -110,7 +110,7 @@ namespace Grappachu.Core.Test.Net.Tcp
 
         private string SendMessage(string message)
         {
-            using (var client = new TcpClient("localhost", PORT))
+            using (var client = new TcpClient("localhost", Port))
             {
                 var data = System.Text.Encoding.ASCII.GetBytes(message);
                 String responseData;
@@ -127,5 +127,9 @@ namespace Grappachu.Core.Test.Net.Tcp
             }
         }
 
+        public void Dispose()
+        {
+            _sut.Dispose();
+        }
     }
 }

@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,11 +39,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\Packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\Packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.7.8.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\Packages\Moq.4.7.8\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\..\..\Packages\Moq.4.7.8\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\..\Packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
@@ -60,22 +61,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Deployment\ApplicationUpdaterTest.cs" />
+    <Compile Include="Drawing\Extensions\ImageExtensionsTest.cs" />
+    <Compile Include="Drawing\Extensions\RectangleFExtensionTest.cs" />
     <Compile Include="Environment\ApplicationHelperTest.cs" />
     <Compile Include="Environment\OnScreenKeyboardTest.cs" />
-    <Compile Include="Globalization\StringHelperTest.cs" />
+    <Compile Include="Globalization\Providers\FileSizeFormatterTest.cs" />
     <Compile Include="IO\FileEnumeratorTest.cs" />
     <Compile Include="IO\FileIndexTest.cs" />
     <Compile Include="IO\FileManagerTest.cs" />
+    <Compile Include="IO\GenericFolderBasedTest.cs" />
+    <Compile Include="Lang\ComparableExtensionsTest.cs" />
     <Compile Include="Lang\ImageExtensionsTest.cs" />
     <Compile Include="Lang\ListExtensionsTest.cs" />
     <Compile Include="Lang\StringExtensionTest.cs" />
+    <Compile Include="Lang\Text\LevenshteinDistanceTest.cs" />
     <Compile Include="Media\MimeTest.cs" />
     <Compile Include="Net\Tcp\SocketListenerTest.cs" />
     <Compile Include="Net\UrlTest.cs" />
+    <Compile Include="Preview\IO\FilesystemToolsTest.cs" />
+    <Compile Include="Preview\IO\GenericFolderBasedTest.cs" />
+    <Compile Include="Preview\IO\TempFileTests.cs" />
+    <Compile Include="Preview\Text\StringExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Serialization\BinarySerializerTest.cs" />
+    <Compile Include="Runtime\Threading\RuntimeHelperTests.cs" />
+    <Compile Include="Security\Encryption\AesTest.cs" />
     <Compile Include="Security\Hashing\Md5Test.cs" />
-    <Compile Include="Util\Layout\TableLayoutEngineTest.cs" />
+    <Compile Include="Drawing\Layout\TableLayoutEngineTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -85,6 +97,10 @@
       <Project>{cb55d69c-639b-437a-9c2c-af451a90bbd1}</Project>
       <Name>Grappachu.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Collections\Extensions\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

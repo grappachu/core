@@ -124,64 +124,85 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Deployment\ApplicationDeploymentWrapper.cs" />
-    <Compile Include="Deployment\ApplicationDeployUpdateInfo.cs" />
-    <Compile Include="Deployment\ApplicationUpdater.cs" />
-    <Compile Include="Deployment\IApplicationDeployment.cs" />
-    <Compile Include="Domain\RotationDirection.cs" />
-    <Compile Include="Domain\ErrorArgs.cs" />
-    <Compile Include="Domain\MessageArgs.cs" />
-    <Compile Include="Environment\ApplicationHelper.cs" />
-    <Compile Include="Environment\IApplicationHelper.cs" />
-    <Compile Include="Environment\Keyboard\OnScreenKeyboard.cs" />
-    <Compile Include="Environment\Keyboard\ShowWindowCommands.cs" />
-    <Compile Include="Environment\NativeMethods.cs" />
-    <Compile Include="Globalization\StringHelper.cs" />
-    <Compile Include="IO\FileEnumerator.cs" />
-    <Compile Include="IO\FileIndex.cs">
+    <Compile Include="Preview\Deployment\ApplicationDeploymentWrapper.cs" />
+    <Compile Include="Preview\Deployment\ApplicationDeployUpdateInfo.cs" />
+    <Compile Include="Preview\Deployment\ApplicationUpdater.cs" />
+    <Compile Include="Preview\Deployment\IApplicationDeployment.cs" />
+    <Compile Include="Lang\Domain\ErrorArgs.cs" />
+    <Compile Include="Lang\Domain\MessageArgs.cs" />
+    <Compile Include="Drawing\Extensions\ImageExtension.cs" />
+    <Compile Include="Drawing\Extensions\RectangeFExtension.cs" />
+    <Compile Include="Drawing\GraphicsQuality.cs" />
+    <Compile Include="Drawing\RotationDirection.cs" />
+    <Compile Include="Preview\Environment\ApplicationHelper.cs" />
+    <Compile Include="Preview\Environment\IApplicationHelper.cs" />
+    <Compile Include="Preview\Environment\Keyboard\KeyboardListener.cs" />
+    <Compile Include="Preview\Environment\Keyboard\OnScreenKeyboard.cs" />
+    <Compile Include="Preview\Environment\Keyboard\ShowWindowCommands.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Globalization\Providers\FileSizeFormatter.cs" />
+    <Compile Include="Preview\IO\FileEnumerator.cs" />
+    <Compile Include="Preview\IO\FileIndex.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IO\FileManager.cs" />
-    <Compile Include="IO\FileStatus.cs" />
-    <Compile Include="IO\IFileEnumerator.cs" />
-    <Compile Include="IO\PathSearchInfo.cs" />
-    <Compile Include="IO\PathSearchOptions.cs" />
-    <Compile Include="Lang\CollectionExtensions.cs" />
-    <Compile Include="Lang\ImageExtension.cs" />
-    <Compile Include="Lang\StringExtensions.cs" />
-    <Compile Include="Media\GenericMediaSource.cs" />
+    <Compile Include="Preview\IO\FileManager.cs" />
+    <Compile Include="Preview\IO\FileStatus.cs" />
+    <Compile Include="Preview\IO\IFileEnumerator.cs" />
+    <Compile Include="Preview\IO\PathSearchInfo.cs" />
+    <Compile Include="Preview\IO\PathSearchOptions.cs" />
+    <Compile Include="Collections\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Lang\Extensions\ComparableExtensions.cs" />
+    <Compile Include="Lang\Extensions\EnumExtensions.cs" />
+    <Compile Include="Lang\Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Lang\Extensions\StringExtensions.cs" />
+    <Compile Include="Lang\Text\LevenshteinDistance.cs" />
     <Compile Include="Media\IMediaPlayer.cs" />
     <Compile Include="Media\IMediaSource.cs" />
     <Compile Include="Media\IPlayable.cs" />
     <Compile Include="Media\ISeekable.cs" />
-    <Compile Include="Media\MediaState.cs" />
-    <Compile Include="Media\MediaStateEventArgs.cs" />
-    <Compile Include="Media\Mime.cs" />
-    <Compile Include="Media\PlayOrder.cs" />
-    <Compile Include="Net\Http\IWebRequestClient.cs" />
-    <Compile Include="Net\Http\WebRequestClient.cs" />
-    <Compile Include="Net\Tcp\IncomingMessageArgs.cs" />
-    <Compile Include="Net\Tcp\ISocketListener.cs" />
-    <Compile Include="Net\Tcp\SocketListener.cs" />
-    <Compile Include="Net\Url.cs" />
+    <Compile Include="Media\ITimeable.cs" />
+    <Compile Include="Media\Common\MediaState.cs" />
+    <Compile Include="Media\Common\MediaStateEventArgs.cs" />
+    <Compile Include="Media\Common\MediaUriSource.cs" />
+    <Compile Include="Preview\Util\Mime.cs" />
+    <Compile Include="Media\Common\PlayOrder.cs" />
+    <Compile Include="Preview\Net\Http\HttpClient.cs" />
+    <Compile Include="Preview\Net\Http\HttpPostMessage.cs" />
+    <Compile Include="Preview\Net\Http\HttpPostMethod.cs" />
+    <Compile Include="Preview\Net\Http\IHttpClient.cs" />
+    <Compile Include="Preview\Net\Tcp\IncomingMessageArgs.cs" />
+    <Compile Include="Preview\Net\Tcp\ISocketListener.cs" />
+    <Compile Include="Preview\Net\Tcp\SocketListener.cs" />
+    <Compile Include="Preview\Net\Url.cs" />
+    <Compile Include="Preview\IO\FilesystemTools.cs" />
+    <Compile Include="Preview\IO\TempFile.cs" />
+    <Compile Include="Preview\Text\StringExtension.cs" />
+    <Compile Include="Preview\UriExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Runtime\Serialization\BinarySerializer.cs" />
-    <Compile Include="Runtime\Serialization\IRuntimeSerializer.cs" />
+    <Compile Include="Preview\Runtime\Serialization\BinarySerializer.cs" />
+    <Compile Include="Preview\Runtime\Serialization\IRuntimeSerializer.cs" />
+    <Compile Include="Preview\Runtime\Threading\RuntimeHelper.cs" />
+    <Compile Include="Preview\Encryption\AES.cs" />
+    <Compile Include="Preview\Encryption\EncryptionAlgorythm.cs" />
+    <Compile Include="Preview\Encryption\IEncryptionProvider.cs" />
     <Compile Include="Security\Hashing\HashAlgorythm.cs" />
     <Compile Include="Security\Hashing\IHashProvider.cs" />
     <Compile Include="Security\Hashing\Md5.cs" />
-    <Compile Include="Security\IKeyGenerator.cs" />
-    <Compile Include="Security\OutputEncoding.cs" />
-    <Compile Include="UI\Dialogs.cs" />
-    <Compile Include="UI\IDialogHolder.cs" />
-    <Compile Include="Util\Duplicates\DuplicateGroup.cs" />
-    <Compile Include="Util\Layout\TableLayoutEngine.cs" />
+    <Compile Include="Preview\IO\IKeyGenerator.cs" />
+    <Compile Include="Lang\Text\BinaryRepresentation.cs" />
+    <Compile Include="Preview\UI\Dialogs.cs" />
+    <Compile Include="Preview\UI\IDialogHolder.cs" />
+    <Compile Include="Collections\Duplicates\DuplicateGroup.cs" />
+    <Compile Include="Drawing\Layout\MeasureCellEventArgs.cs" />
+    <Compile Include="Drawing\Layout\PixelRuler.cs" />
+    <Compile Include="Drawing\Layout\TableLayoutEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Grappachu.Core.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Preview\" />
+    <Folder Include="IO\" />
+    <Folder Include="Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
@@ -196,8 +217,7 @@
     <RemoveDir Directories="NuGet" />
     <MakeDir Directories="NuGet" />
     <!-- Package the project -->
-    <Exec WorkingDirectory="$(BuildDir)" 
-	Command="$(ProjectDir)..\.nuget\NuGet.exe pack Grappachu.Core.nuspec -Verbosity detailed -Symbols -OutputDir &quot;NuGet&quot; -Version %(OutputAssemblyInfo.Version) -Properties &quot;Configuration=$(Configuration)&quot;" />
+    <Exec WorkingDirectory="$(BuildDir)" Command="$(ProjectDir)..\.nuget\NuGet.exe pack Grappachu.Core.nuspec -Verbosity detailed -Symbols -OutputDir &quot;NuGet&quot; -Version %(OutputAssemblyInfo.Version) -Properties &quot;Configuration=$(Configuration)&quot;" />
   </Target>
   <Import Project="$(ProjectDir)..\..\.nuget\NuGet.targets" Condition="Exists('$(ProjectDir)..\..\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

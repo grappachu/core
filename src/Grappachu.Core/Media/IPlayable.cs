@@ -1,40 +1,41 @@
 ﻿using System;
 using System.ComponentModel;
+using Grappachu.Core.Media.Common;
 
 namespace Grappachu.Core.Media
 {
     /// <summary>
-    ///     Rappresenta un oggetto dotato di funzionalità di riproduzione multimediale
+    ///     Defines a component that implements basic playback functions (Play/Stop/Pause)
     /// </summary>
     public interface IPlayable : INotifyPropertyChanged
     {
         /// <summary>
-        ///     Ottiene lo stato del controllo
+        ///     Gets the state of this playable object
         /// </summary>
         MediaState Status { get; }
 
         /// <summary>
-        ///     Richiamato al termine della riproduzione del contenuto
+        ///     Invoked at end of media 
         /// </summary>
         event EventHandler MediaEnded;
 
         /// <summary>
-        /// Richiamato al cambio di stato di un player multimediale
+        ///     Invoked whend the <see cref="IPlayable"/> object changes its state
         /// </summary>
         event EventHandler<MediaStateEventArgs> MediaStateChanged;
 
         /// <summary>
-        ///     Avvia la riproduzione di un contenuto
+        ///     Starts the playback
         /// </summary>
         void Play();
 
         /// <summary>
-        ///     Arresta la riproduzione di un contenuto
+        ///     Stops the playback
         /// </summary>
         void Stop();
 
         /// <summary>
-        ///     Sospende la riproduzione di un contenuto
+        ///     Puts the playback in a paused state
         /// </summary>
         void Pause();
     }

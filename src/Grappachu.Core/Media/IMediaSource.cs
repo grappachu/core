@@ -1,13 +1,9 @@
 namespace Grappachu.Core.Media
 {
     /// <summary>
-    ///     Rappresenta un contenuto multimediale
+    ///    A generic interface for representing media sources
     /// </summary>
     public interface IMediaSource
     {
-        /// <summary>
-        /// Ottiene un identificativo del contenuto multimediale
-        /// </summary>
-        string Path { get; }
     }
 }

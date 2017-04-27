@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Grappachu.Core.Collections.Extensions;
 using Grappachu.Core.Lang;
+using Grappachu.Core.Lang.Extensions;
 using NUnit.Framework;
 using SharpTestsEx;
 
@@ -43,7 +45,7 @@ namespace Grappachu.Core.Test.Lang
         {
             ICollection<object> list = new List<object> {"a", "b", "c", "d", "e"};
 
-            bool res = list.MoveDown("e");
+            bool res = list.ShiftLast("e");
 
             list.Should().Have.SameSequenceAs(new[] {"a", "b", "c", "d", "e"});
             res.Should().Be.False();
@@ -54,7 +56,7 @@ namespace Grappachu.Core.Test.Lang
         {
             ICollection<object> list = new List<object> {"a", "b", "c", "d", "e"};
 
-            bool res = list.MoveDown("c");
+            bool res = list.ShiftLast("c");
 
             list.Should().Have.SameSequenceAs(new[] {"a", "b", "d", "c", "e"});
             res.Should().Be.True();
@@ -65,7 +67,7 @@ namespace Grappachu.Core.Test.Lang
         {
             ICollection<object> list = new List<object> {"a", "b", "c", "d", "e"};
 
-            bool res = list.MoveUp("a");
+            bool res = list.ShiftFirst("a");
 
             list.Should().Have.SameSequenceAs(new[] {"a", "b", "c", "d", "e"});
             res.Should().Be.False();
@@ -76,7 +78,7 @@ namespace Grappachu.Core.Test.Lang
         {
             IList<object> list = new List<object> {"a", "b", "c", "d", "e"};
 
-            bool res = list.MoveUp("c");
+            bool res = list.ShiftFirst("c");
 
             list.Should().Have.SameSequenceAs(new[] {"a", "c", "b", "d", "e"});
             res.Should().Be.True();
