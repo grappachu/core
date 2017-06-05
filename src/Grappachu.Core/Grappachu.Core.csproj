@@ -164,6 +164,8 @@
     <Compile Include="Media\Common\MediaState.cs" />
     <Compile Include="Media\Common\MediaStateEventArgs.cs" />
     <Compile Include="Media\Common\MediaUriSource.cs" />
+    <Compile Include="Preview\Runtime\Compilers\CompilerResultsExtensions.cs" />
+    <Compile Include="Preview\Runtime\Compilers\CsCompiler.cs" />
     <Compile Include="Preview\Util\Mime.cs" />
     <Compile Include="Media\Common\PlayOrder.cs" />
     <Compile Include="Preview\Net\Http\HttpClient.cs" />
