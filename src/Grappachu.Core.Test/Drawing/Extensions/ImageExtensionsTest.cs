@@ -9,7 +9,16 @@ namespace Grappachu.Core.Test.Drawing.Extensions
     [TestFixture]
     internal class ImageExtensionsTest
     {
+        [Test]
+        public void EnlargeCanvas_should_add_border_or_specified_thickness()
+        {
+            Image imgSrc = new Bitmap(200, 100);
 
+            var imgOut = imgSrc.EnlargeCanvas(5, Color.Black);
+
+            imgOut.Width.Should().Be.EqualTo(210);
+            imgOut.Height.Should().Be.EqualTo(110);
+        }
 
 
         [Test]
@@ -24,17 +33,6 @@ namespace Grappachu.Core.Test.Drawing.Extensions
         }
 
         [Test]
-        public void EnlargeCanvas_should_add_border_or_specified_thickness()
-        {
-            Image imgSrc = new Bitmap(200, 100);
-
-            var imgOut = imgSrc.EnlargeCanvas(5, Color.Black);
-
-            imgOut.Width.Should().Be.EqualTo(210);
-            imgOut.Height.Should().Be.EqualTo(110);
-        }
-
-        [Test]
         public void GetGraphics_should_create_graphics_from_image()
         {
             Image imgSrc = new Bitmap(200, 100);
@@ -42,6 +40,17 @@ namespace Grappachu.Core.Test.Drawing.Extensions
             var g = imgSrc.GetGraphics(GraphicsQuality.Highest);
 
             g.Should().Not.Be.Null();
+        }
+
+        [Test]
+        public void Resize_should_create_a_stretched_image()
+        {
+            Image imgSrc = new Bitmap(200, 100);
+
+            var imgOut = imgSrc.Resize(new Size(300, 300));
+
+            imgOut.Width.Should().Be.EqualTo(300);
+            imgOut.Height.Should().Be.EqualTo(300);
         }
 
         [Test]
@@ -77,17 +86,6 @@ namespace Grappachu.Core.Test.Drawing.Extensions
             imgOut.Height.Should().Be.EqualTo(300);
         }
 
-        [Test]
-        public void Resize_should_create_a_stretched_image()
-        {
-            Image imgSrc = new Bitmap(200, 100);
-
-            var imgOut = imgSrc.Resize(new Size(300, 300));
-
-            imgOut.Width.Should().Be.EqualTo(300);
-            imgOut.Height.Should().Be.EqualTo(300);
-        }
-
 
         //[Test]
         //public void ToBitmap_should_cast_a_bitmap()
@@ -105,24 +103,23 @@ namespace Grappachu.Core.Test.Drawing.Extensions
         {
             Image imgSrc = new Bitmap(200, 100);
 
-            byte[] bytes = imgSrc.GetBytes();
+            var bytes = imgSrc.GetBytes();
 
             bytes.Length.Should().Be.EqualTo(208);
         }
 
-        //[Test]
-        //public void perf2()
-        //{
-        //   Image imgSrc = new Bitmap(2200, 1200, PixelFormat.Format24bppRgb);
-
-        //    System.IO.File.WriteAllBytes("x:\\img0.jpg", imgSrc.GetBytes());
+        //    System.IO.File.WriteAllBytes("x:\\img1.png", imgSrc.GetBytes(ImageFormat.Png));
+        //    System.IO.File.WriteAllBytes("x:\\img1.bmp", imgSrc.GetBytes(ImageFormat.Bmp));
 
         //    System.IO.File.WriteAllBytes("x:\\img1.jpg", imgSrc.GetBytes(ImageFormat.Jpeg));
-        //    System.IO.File.WriteAllBytes("x:\\img1.bmp", imgSrc.GetBytes(ImageFormat.Bmp));
-        //    System.IO.File.WriteAllBytes("x:\\img1.png", imgSrc.GetBytes(ImageFormat.Png));
+
+        //    System.IO.File.WriteAllBytes("x:\\img0.jpg", imgSrc.GetBytes());
+        //   Image imgSrc = new Bitmap(2200, 1200, PixelFormat.Format24bppRgb);
+        //{
+        //public void perf2()
+
+        //[Test]
         //    System.IO.File.WriteAllBytes("x:\\img1.gif", imgSrc.GetBytes(ImageFormat.Gif));
         //}
-
- 
     }
 }

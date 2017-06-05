@@ -6,10 +6,13 @@ using System.Text;
 namespace Grappachu.Core.Lang.Extensions
 {
     /// <summary>
-    ///     Extension methods for <see cref="String" /> objects
+    ///     Extension methods for manipulating  <see cref="string" /> objects
     /// </summary>
     public static class StringExtensions
     {
+        private static readonly char[] BreackableChars = {' ', '-', '|'};
+        private static readonly char[] NewlineChars = {'\n', '\r'};
+
         /// <summary>
         ///     Convert string value to decimal ignore the culture.
         /// </summary>
@@ -27,7 +30,7 @@ namespace Grappachu.Core.Lang.Extensions
             {
                 case 0:
                     break;
-                case 1: 
+                case 1:
                     tempValue = value.Replace(",", ".");
                     break;
                 case 2:
@@ -62,6 +65,46 @@ namespace Grappachu.Core.Lang.Extensions
                 builder.Append(c);
             }
             return builder.ToString();
+        }
+
+        /// <summary>
+        ///     Wraps a text over multiple lines by inserting newline char when required.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="maxLineLength">max length of lines in chars</param>
+        public static string Wrap(this string text, int maxLineLength = 80)
+        {
+            var lineLength = 0;
+            var lastBreakableIndex = -1;
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < text.Length; i++)
+            {
+                sb.Append(text[i]);
+                lineLength++;
+
+                if (NewlineChars.Contains(text[i]))
+                    lineLength = 0;
+                if (BreackableChars.Contains(text[i]))
+                    lastBreakableIndex = i;
+
+                if (lineLength > maxLineLength)
+                {
+                    // Should Break 
+                    var charsBack = i - lastBreakableIndex;
+                    if (charsBack < lineLength)
+                    {
+                        sb.Insert(sb.Length - charsBack, Environment.NewLine);
+                        lineLength = 0;
+                    }
+                    else
+                    {
+                        sb.Append(Environment.NewLine);
+                        lineLength = 0;
+                    }
+                }
+            }
+            return sb.ToString();
         }
     }
 }

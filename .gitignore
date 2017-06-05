@@ -2,6 +2,7 @@
 *.resharper
 *.user
 *.nupkg
+src/.nuget/NuGet.config
 src/Grappachu.Core/bin/*
 src/Grappachu.Core/obj/*
 src/Grappachu.Core.Test/bin/*

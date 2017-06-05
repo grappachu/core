@@ -12,49 +12,6 @@ namespace Grappachu.Core.Preview.Text
     /// </summary>
     public static class StringExtension
     {
-        private static readonly char[] BreackableChars = {' ', '-', '|'};
-        private static readonly char[] NewlineChars = {'\n', '\r'};
-
-        /// <summary>
-        ///     Wraps a text over multiple lines by inserting newline char when required.
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="maxLineLength">max length of lines in chars</param>
-        public static string Wrap(this string text, int maxLineLength = 80)
-        {
-            var lineLength = 0;
-            var lastBreakableIndex = -1;
-
-            var sb = new StringBuilder();
-            for (var i = 0; i < text.Length; i++)
-            {
-                sb.Append(text[i]);
-                lineLength++;
-
-                if (NewlineChars.Contains(text[i]))
-                    lineLength = 0;
-                if (BreackableChars.Contains(text[i]))
-                    lastBreakableIndex = i;
-
-                if (lineLength > maxLineLength)
-                {
-                    // Should Break 
-                    var charsBack = i - lastBreakableIndex;
-                    if (charsBack < lineLength)
-                    {
-                        sb.Insert(sb.Length - charsBack, System.Environment.NewLine);
-                        lineLength = 0;
-                    }
-                    else
-                    {
-                        sb.Append(System.Environment.NewLine);
-                        lineLength = 0;
-                    }
-                }
-            }
-            return sb.ToString();
-        }
-
         /// <summary>
         ///     Renders a text to a bitmap
         /// </summary>
