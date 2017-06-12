@@ -1,15 +1,45 @@
-# Grappachu.Core
-My personal collection of utilities
+# Grappachu.Core 
 
-# Goal
-The purpose of this package is to create my own package, multi-framework and free from 3rd party dependencies. 
+The purpose of this project is to have my personal collection of utilities and interfaces grouped in a multi-framework package free from dependencies. 
 
-# Getting Started
-You can simply download and feel free to explore the classes in the package. Namespaces used are very close to Microsoft choiches so it should make everything easier to use.
+## Getting Started
+You can simply download the package and explore the classes.
+I'll try to keep Namespaces used very close to Microsoft choiches so it shoul be esier to fine what you're looking for.
 
-**Be aware from Grappachu.Core.Preview namespace! This is only for unreleased classes and averything inside of it can change in signatures (and of course namespace) without advice.**
+Anyway here's a small list of namespaces with some features in the library:
+
+* **Collections** 
+  * IEnumerable extension methods
+* **Drawing** 
+  * ImageExtensions: A set of extensions for resize and scaling Bitmaps
+  * TableLayoutEngine: Algorythm to compute column weights of DataTable
+* **Globalizations**
+  * FileSizeFormatter: Formatter for printing file sizes in a friendly way
+* **Lang**
+  * Various extensions for common types
+* **Media**
+  * Various interfaces for media components
+* **Messaging**
+  * Basic interfaces for working on a message queue
+* **Runtime**
+  * Compilers: Providers for compiling and running c# code at runtime
+* **Security**
+
+----------------------------
+
+**Be aware from ```Grappachu.Core.Preview``` namespace! This is only for unreleased classes and averything inside of it can change in signatures (and of course namespace) without advice.**
+
+----------------------------
 
 # Change Log
+
+## [2.0.2] (2017-06-12)
+
+**Added:**
+- Messaging namespace with basic interfaces
+
+**Released:**
+- C# Compiler
 
 ## [2.0.1] (2017-06-05)
 

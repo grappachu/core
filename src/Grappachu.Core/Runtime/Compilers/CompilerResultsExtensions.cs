@@ -1,6 +1,6 @@
 using System.CodeDom.Compiler;
 
-namespace Grappachu.Core.Preview.Runtime.Compilers
+namespace Grappachu.Core.Runtime.Compilers
 {
     /// <summary>
     ///     Defines a set of extension methods for <see cref="CompilerResults" />

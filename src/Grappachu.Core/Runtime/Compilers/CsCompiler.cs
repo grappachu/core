@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.CSharp;
 
-namespace Grappachu.Core.Preview.Runtime.Compilers
+namespace Grappachu.Core.Runtime.Compilers
 {
     /// <summary>
     ///     Defines a runtime compiler for C# code
