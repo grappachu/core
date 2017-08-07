@@ -124,6 +124,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lang\DateTimes.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeploymentWrapper.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeployUpdateInfo.cs" />
     <Compile Include="Preview\Deployment\ApplicationUpdater.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Drawing\Layout\MeasureCellEventArgs.cs" />
     <Compile Include="Drawing\Layout\PixelRuler.cs" />
     <Compile Include="Drawing\Layout\TableLayoutEngine.cs" />
+    <Compile Include="Security\Hashing\SHA512.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Grappachu.Core.nuspec" />

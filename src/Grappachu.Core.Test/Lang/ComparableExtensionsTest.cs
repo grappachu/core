@@ -1,4 +1,5 @@
 ﻿using System;
+using Grappachu.Core.Drawing;
 using Grappachu.Core.Lang;
 using Grappachu.Core.Lang.Extensions;
 using NUnit.Framework;
@@ -44,6 +45,8 @@ namespace Grappachu.Core.Test.Lang
         [TestCase(new object[] { null, "X" }, ExpectedResult = "X")]
         [TestCase(new object[] { "J", "X" }, ExpectedResult = "J")]
         [TestCase(new object[] { default(string), "X" }, ExpectedResult = "X")]
+        [TestCase(new object[] { default(bool), true }, ExpectedResult = false)]
+        [TestCase(new object[] { default(RotationDirection), RotationDirection.AntiClockwise }, ExpectedResult = RotationDirection.Clockwise)]
         public IComparable Or_test(IComparable pref, IComparable alt)
         {
             return pref.Or(alt);

@@ -38,8 +38,9 @@ namespace Grappachu.Core.Lang.Extensions
 
         /// <summary>
         ///     Checks the <paramref name="preferred" /> value and returns the <paramref name="alternative" /> when the first one
-        ///     has no value
+        ///     is null.
         /// </summary>
+        /// <remarks>Note: When the value is a primitive type or enum the default(T) will be considered a non null value</remarks>
         /// <typeparam name="T"></typeparam>
         /// <param name="preferred"></param>
         /// <param name="alternative"></param>

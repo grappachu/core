@@ -4,83 +4,84 @@ using System.Text;
 namespace Grappachu.Core.Security.Hashing
 {
     /// <summary>
-    ///     Defines a component for computing hashes based on MD5 Algorythm
+    ///     Defines a component for computing hashes based on SHA512 Algorythm
     /// </summary>
-    public class MD5 : IHashProvider
+    public class SHA512 : IHashProvider
     {
         #region Implementation of IHashProvider
 
         /// <summary>
         ///     Gests the hashing algorythm used by this provider to compute hashes
         /// </summary>
-        public HashAlgorythm Algorythm => HashAlgorythm.MD5;
+        public HashAlgorythm Algorythm => HashAlgorythm.SHA512;
 
 
         /// <summary>
-        ///     Computes the hash for a file using the MD5 Algorythm
+        ///     Computes the hash for a file using the SHA512 Algorythm
         /// </summary>
         /// <param name="file">File to be hashed</param>
         /// <returns></returns>
         public byte[] Hash(FileInfo file)
         {
-            return MD5File(file);
+            return SHA512File(file);
         }
 
 
         /// <summary>
-        ///     Computes the hash for a string using the MD5 Algorythm
+        ///     Computes the hash for a string using the SHA512 Algorythm
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
         public byte[] Hash(string text)
         {
-            return MD5Bytes(Encoding.Default.GetBytes(text));
+            return SHA512Bytes(Encoding.Default.GetBytes(text));
         }
 
 
         /// <summary>
-        ///     Computes the hash for a byte array using the MD5 Algorythm
+        ///     Computes the hash for a byte array using the SHA512 Algorythm
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
         public byte[] Hash(byte[] bytes)
         {
-            return MD5Bytes(bytes);
+            return SHA512Bytes(bytes);
         }
 
         #endregion
 
         #region Private Methods
 
-        private static byte[] MD5Bytes(byte[] bytes)
+        private static byte[] SHA512Bytes(byte[] bytes)
         {
-            // Create a new instance of the MD5CryptoServiceProvider object.
+            // Create a new instance of the SHA512CryptoServiceProvider object.
             byte[] data;
-            using (var md5Hasher = System.Security.Cryptography.MD5.Create())
+            using (var sha512Hasher = System.Security.Cryptography.SHA512.Create())
             {
-                data = md5Hasher.ComputeHash(bytes);
+                data = sha512Hasher.ComputeHash(bytes);
             }
 
             return data;
         }
 
-        private static byte[] MD5File(FileInfo file)
+        private static byte[] SHA512File(FileInfo file)
         {
             byte[] mHash;
             using (var fs = file.OpenRead())
             {
                 // definizione del nostro tipo
-                using (var sscMd5 = System.Security.Cryptography.MD5.Create())
+                using (var sscSha512 = System.Security.Cryptography.SHA512.Create())
                 {
-                    mHash = sscMd5.ComputeHash(fs);
+                    mHash = sscSha512.ComputeHash(fs);
                 }
             }
             return mHash;
         }
 
-        private static MD5 GetInstance()
+
+        private static SHA512 GetInstance()
         {
-            return new MD5();
+            return new SHA512();
         }
 
         #endregion

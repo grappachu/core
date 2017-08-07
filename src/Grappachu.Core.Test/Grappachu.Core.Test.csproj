@@ -88,6 +88,7 @@
     <Compile Include="Security\Encryption\AesTest.cs" />
     <Compile Include="Security\Hashing\Md5Test.cs" />
     <Compile Include="Drawing\Layout\TableLayoutEngineTest.cs" />
+    <Compile Include="Security\Hashing\SHA512Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Grappachu.Core\Grappachu.Core.csproj">
