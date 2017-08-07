@@ -165,6 +165,7 @@
     <Compile Include="Media\Common\MediaState.cs" />
     <Compile Include="Media\Common\MediaStateEventArgs.cs" />
     <Compile Include="Media\Common\MediaUriSource.cs" />
+    <Compile Include="Preview\Lang\Regexes.cs" />
     <Compile Include="Runtime\Compilers\CompilerResultsExtensions.cs" />
     <Compile Include="Runtime\Compilers\CsCompiler.cs" />
     <Compile Include="Preview\Util\Mime.cs" />
