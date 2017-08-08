@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Grappachu.Core.Preview.Runtime.Serialization;
+using Grappachu.Core.Runtime.Serialization;
 using NUnit.Framework;
 using SharpTestsEx;
 

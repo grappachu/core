@@ -9,7 +9,6 @@ namespace Grappachu.Core.Preview.Util
     {
         private const string DefaultKey = "*";
         private static Dictionary<string, string> _dictionary;
-
         
         private static Dictionary<string, string> Dictionary
         {

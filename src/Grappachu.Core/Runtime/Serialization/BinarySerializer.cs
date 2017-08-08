@@ -1,15 +1,15 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Grappachu.Core.Preview.Runtime.Serialization
+namespace Grappachu.Core.Runtime.Serialization
 {
     /// <summary>
-    /// Rappresenta un componente per la serializzazione dei dati in formato binario
+    /// Defines a component for data serialization using binary format
     /// </summary>
     public class BinarySerializer : IRuntimeSerializer
     {
         /// <summary>
-        /// Serializza un oggetto
+        /// Serializes an object
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -24,13 +24,13 @@ namespace Grappachu.Core.Preview.Runtime.Serialization
                     formatter.Serialize(buffer, obj);
                     buffer.Flush();
                     retval = buffer.ToArray();
-                }
+                } 
             }
             return retval;
         }
 
         /// <summary>
-        /// Deserializza un oggetto
+        /// Deserializes an object
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

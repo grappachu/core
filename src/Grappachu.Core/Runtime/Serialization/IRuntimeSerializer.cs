@@ -1,19 +1,19 @@
-namespace Grappachu.Core.Preview.Runtime.Serialization
+namespace Grappachu.Core.Runtime.Serialization
 {
     /// <summary>
-    /// Definisce una interfaccia per la serializzazione dei dati
+    ///  Defines a component for data serialization
     /// </summary>
     public interface IRuntimeSerializer
     {
         /// <summary>
-        /// Serializza un oggetto
+        /// Serializes an object
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         byte[] Serialize(object data);
 
         /// <summary>
-        /// Deserializza un oggetto
+        /// Deserializes an object
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

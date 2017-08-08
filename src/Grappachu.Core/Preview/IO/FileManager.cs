@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using Grappachu.Core.Lang.Extensions;
 using Grappachu.Core.Lang.Text;
-using Grappachu.Core.Preview.Runtime.Serialization;
+using Grappachu.Core.Runtime.Serialization;
 using Grappachu.Core.Security.Hashing;
 
 namespace Grappachu.Core.Preview.IO
