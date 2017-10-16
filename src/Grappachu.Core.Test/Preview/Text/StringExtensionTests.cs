@@ -21,7 +21,9 @@ namespace Grappachu.Core.Test.Preview.Text
             Bitmap image = text.ToBitmap(new Font("Arial", 10), Brushes.Red);
 
             image.Width.Should().Be.IncludedIn(250, 400);
-            image.Height.Should().Be.IncludedIn(50, 70);
+            image.Height.Should().Be.IncludedIn(70, 80);
+
+            image.Save("x:\\ttt.jpg");
         }
 
     

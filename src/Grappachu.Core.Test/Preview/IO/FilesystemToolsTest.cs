@@ -49,11 +49,12 @@ namespace Grappachu.Core.Test.Preview.IO
         [Test]
         public void Exists_should_check_files()
         {
-            var file = CreateFile(@"\testFile");
+            using (var tmp = new TempFile())
+            {
+                tmp.Create();
 
-            var fileExist = FilesystemTools.Exists(file);
-
-            fileExist.Should().Be.True();
+                FilesystemTools.Exists(tmp.Path).Should().Be.True();
+            }
         }
 
         [Test]
@@ -91,11 +92,12 @@ namespace Grappachu.Core.Test.Preview.IO
         [Test]
         public void IsDirectory_should_be_False_for_files()
         {
-            var file = CreateFile(@"\testFile");
+            using (var tmp = new TempFile())
+            {
+                tmp.Create();
 
-            var fileIsDir = FilesystemTools.IsDirectory(file);
-
-            fileIsDir.Should().Be.False();
+                FilesystemTools.IsDirectory(tmp.Path).Should().Be.False();
+            }
         }
 
         [Test]
@@ -226,16 +228,19 @@ namespace Grappachu.Core.Test.Preview.IO
             Directory.Exists(dir).Should().Be.True();
             Directory.Exists(dirToCreate).Should().Be.True();
         }
-        
+
 
         [Test]
         public void SafeDelete_should_delete_files()
         {
-            var file = CreateFile(@"\testFile");
+            using (var tmp = new TempFile())
+            {
+                tmp.Create();
 
-            FilesystemTools.SafeDelete(file);
+                FilesystemTools.SafeDelete(tmp.Path);
 
-            File.Exists(file).Should().Be.False();
+                File.Exists(tmp.Path).Should().Be.False();
+            }
         }
 
         [Test]

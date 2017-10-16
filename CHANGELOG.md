@@ -1,5 +1,12 @@
 # Change Log
 
+**Added:**
+
+- Drawing.ImageUtils: Load image from bytes
+- Drawing.ImageUtils: Extension to convert image to base64
+- Collections.EnumerableUtils: IEnumerable IsNullOrEmpty extension
+- Collections.CollectionUtils: ICollections AddRange extension
+
 ##  [2.0.3] (2017-08-08)
 
 **Added:**

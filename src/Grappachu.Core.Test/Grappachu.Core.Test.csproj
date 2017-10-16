@@ -59,9 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\CollectionUtilsTest.cs" />
+    <Compile Include="Collections\EnumerableUtilstest.cs" />
     <Compile Include="Deployment\ApplicationUpdaterTest.cs" />
     <Compile Include="Drawing\Extensions\ImageExtensionsTest.cs" />
     <Compile Include="Drawing\Extensions\RectangleFExtensionTest.cs" />
+    <Compile Include="Drawing\ImageUtilsTest.cs" />
     <Compile Include="Environment\ApplicationHelperTest.cs" />
     <Compile Include="Environment\OnScreenKeyboardTest.cs" />
     <Compile Include="Globalization\Providers\FileSizeFormatterTest.cs" />

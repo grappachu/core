@@ -8,7 +8,7 @@ using SharpTestsEx;
 namespace Grappachu.Core.Test.Net.Tcp
 {
     [TestFixture]
-    class SocketListenerTest : IDisposable
+    class SocketListenerTest 
     {
         private const int Port = 11342;
         private SocketListener _sut;
@@ -22,10 +22,7 @@ namespace Grappachu.Core.Test.Net.Tcp
         [TearDown]
         public void TearDown()
         {
-            if (_sut != null)
-            {
-                _sut.Dispose();
-            }
+            _sut?.Dispose();
             _sut = null;
         }
 
@@ -127,9 +124,6 @@ namespace Grappachu.Core.Test.Net.Tcp
             }
         }
 
-        public void Dispose()
-        {
-            _sut.Dispose();
-        }
+     
     }
 }

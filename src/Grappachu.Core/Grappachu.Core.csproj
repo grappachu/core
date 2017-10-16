@@ -124,6 +124,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\CollectionUtils.cs" />
+    <Compile Include="Collections\EnumerableUtils.cs" />
+    <Compile Include="Drawing\ImageUtils.cs" />
     <Compile Include="Lang\DateTimes.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeploymentWrapper.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeployUpdateInfo.cs" />
