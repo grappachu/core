@@ -14,7 +14,7 @@ namespace Grappachu.Core.Lang.Extensions
         private static readonly char[] NewlineChars = {'\n', '\r'};
 
         /// <summary>
-        ///     Convert string value to decimal ignore the culture.
+        ///     Convert string value to decimal from any culture.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>Decimal value.</returns>
@@ -44,6 +44,40 @@ namespace Grappachu.Core.Lang.Extensions
             var number = decimal.Parse(tempValue, format);
             return number;
         }
+
+
+        /// <summary>
+        ///     Convert string value to double from any culture.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>Decimal value.</returns>
+        public static double ToDouble(this string value)
+        {
+            var tempValue = value;
+
+            var punctuation = value.Where(char.IsPunctuation).Distinct().ToArray();
+            var count = punctuation.Length;
+
+            var format = CultureInfo.InvariantCulture.NumberFormat;
+            switch (count)
+            {
+                case 0:
+                    break;
+                case 1:
+                    tempValue = value.Replace(",", ".");
+                    break;
+                case 2:
+                    if (punctuation.ElementAt(0) == '.')
+                        tempValue = value.SwapChar('.', ',');
+                    break;
+                default:
+                    throw new InvalidCastException();
+            }
+
+            var number = double.Parse(tempValue, format);
+            return number;
+        }
+
 
         /// <summary>
         ///     Swaps the decimal separator chars.

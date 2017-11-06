@@ -177,7 +177,7 @@ namespace Grappachu.Core.Test.Preview.IO
         [Test]
         public void Rename_should_move_files()
         {
-            var file = CreateFile(@"\testFile");
+            var file = CreateFile(@"testFile");
             var targetFile = Path.Combine(TestRoot, "movedFile");
 
             FilesystemTools.Rename(file, targetFile);
@@ -246,7 +246,7 @@ namespace Grappachu.Core.Test.Preview.IO
         [Test]
         public void SafeDelete_should_delete_readonly_files_when_specified()
         {
-            var file = CreateFile(@"\testFile", true);
+            var file = CreateFile(@"testFile", true);
 
             Executing.This(() => FilesystemTools.SafeDelete(file)).Should().Throw();
             Executing.This(() => FilesystemTools.SafeDelete(file, false, true)).Should().NotThrow();
@@ -258,10 +258,10 @@ namespace Grappachu.Core.Test.Preview.IO
         [Test]
         public void SafeDelete_should_delete_readonly_files_recursively()
         {
-            var file = CreateFile(@"\testFile");
-            var dir = CreateDir(@"\TestDir");
-            CreateDir(@"\TestDir\SubDir");
-            CreateFile(@"\TestDir\SubDir\testFile");
+            var file = CreateFile(@"testFile");
+            var dir = CreateDir(@"TestDir");
+            CreateDir(@"TestDir\SubDir");
+            CreateFile(@"TestDir\SubDir\testFile");
 
             FilesystemTools.SafeDelete(file);
             File.Exists(file).Should().Be.False();

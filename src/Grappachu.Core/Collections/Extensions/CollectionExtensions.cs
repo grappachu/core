@@ -20,7 +20,7 @@ namespace Grappachu.Core.Collections.Extensions
             var i = 0;
             while (e.MoveNext())
             {
-                if (ReferenceEquals(e.Current, obj))
+                if (ReferenceEquals(e.Current, obj) || (typeof(T).IsValueType) && Equals(e.Current, obj))
                     return i;
                 i++;
             }

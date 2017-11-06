@@ -8,32 +8,34 @@ namespace Grappachu.Core.Test.Lang
     [TestFixture]
     internal class StringExtensionsTest
     {
-        [Test]
-        public void ShouldConvertStringToDecimalIgnoringCulture()
+        [TestCase("123.4", 123.4)]
+        [TestCase("123,4", 123.4)]
+        [TestCase("1,234.5", 1234.5)]
+        [TestCase("1.234,5", 1234.5)]
+        [TestCase("123", 123)]
+        [TestCase("1,234,567.89", 1234567.89)]
+        [TestCase("1.234.567,89", 1234567.89)]
+        public void Should_Convert_String_ToDecimal_from_any_culture(string val, decimal expected)
         {
-            var v1 = "123.4";
-            var v2 = "123,4";
-            var v3 = "1,234.5";
-            var v4 = "1.234,5";
-            var v5 = "123";
-            var v6 = "1,234,567.89";
-            var v7 = "1.234.567,89";
+            var res = val.ToDecimal();
 
-            var a1 = v1.ToDecimal();
-            var a2 = v2.ToDecimal();
-            var a3 = v3.ToDecimal();
-            var a4 = v4.ToDecimal();
-            var a5 = v5.ToDecimal();
-            var a6 = v6.ToDecimal();
-            var a7 = v7.ToDecimal();
+            Assert.AreEqual(expected, res);
+        }
 
-            Assert.AreEqual((decimal) 123.4, a1);
-            Assert.AreEqual((decimal) 123.4, a2);
-            Assert.AreEqual((decimal) 1234.5, a3);
-            Assert.AreEqual((decimal) 1234.5, a4);
-            Assert.AreEqual((decimal) 123, a5);
-            Assert.AreEqual((decimal) 1234567.89, a6);
-            Assert.AreEqual((decimal) 1234567.89, a7);
+
+
+        [TestCase("123.4", 123.4)]
+        [TestCase("123,4", 123.4)]
+        [TestCase("1,234.5", 1234.5)]
+        [TestCase("1.234,5", 1234.5)]
+        [TestCase("123", 123)]
+        [TestCase("1,234,567.89", 1234567.89)]
+        [TestCase("1.234.567,89", 1234567.89)]
+        public void ShouldConvertStringToDoubleIgnoringCulture(string val, double expected)
+        {
+            var res = val.ToDouble();
+
+            Assert.AreEqual(expected, res);
         }
 
 
@@ -54,11 +56,11 @@ namespace Grappachu.Core.Test.Lang
                                 "gl'immortali del cielo abitatori concedanvi espugnar la Prïameia cittade, e " +
                                 "salvi al patrio suol tornarvi. Deh mi sciogliete la diletta figlia, ricevetene " +
                                 "il prezzo, e il saettante figlio di Giove rispettate.";
-            var expectedLines = (double) text.Length / lineLenght;
+            var expectedLines = (double)text.Length / lineLenght;
 
             var wrapped = text.Wrap(50);
 
-            var lines = wrapped.Split(new[] {System.Environment.NewLine}, StringSplitOptions.None);
+            var lines = wrapped.Split(new[] { System.Environment.NewLine }, StringSplitOptions.None);
             lines.Length.Should().Be.IncludedIn(Math.Floor(expectedLines), Math.Ceiling(expectedLines));
         }
     }

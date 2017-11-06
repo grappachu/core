@@ -1,11 +1,16 @@
 # Change Log
 
+##  [2.1.0] (2017-11-06)
+**Fixed:**
+
+- Collections.CollectionExtensions: Bug when shifting value types
+
 **Added:**
 
 - Drawing.ImageUtils: Load image from bytes
 - Drawing.ImageUtils: Extension to convert image to base64
 - Collections.EnumerableUtils: IEnumerable IsNullOrEmpty extension
-- Collections.CollectionUtils: ICollections AddRange extension
+- Collections.CollectionUtils: ICollections AddRange, Sort extension
 
 ##  [2.0.3] (2017-08-08)
 

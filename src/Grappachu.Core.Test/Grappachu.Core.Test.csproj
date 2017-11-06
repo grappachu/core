@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\CollectionUtilsTest.cs" />
-    <Compile Include="Collections\EnumerableUtilstest.cs" />
+    <Compile Include="Collections\EnumerableUtilsTest.cs" />
     <Compile Include="Deployment\ApplicationUpdaterTest.cs" />
     <Compile Include="Drawing\Extensions\ImageExtensionsTest.cs" />
     <Compile Include="Drawing\Extensions\RectangleFExtensionTest.cs" />
