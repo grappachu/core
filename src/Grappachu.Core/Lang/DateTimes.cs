@@ -20,6 +20,6 @@ namespace Grappachu.Core.Lang
         /// <summary>
         ///     Defines a date matching 1st Jan 1970
         /// </summary>
-        public static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        public static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
     }
 }
