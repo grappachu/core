@@ -38,5 +38,17 @@ namespace Grappachu.Core.Test.Lang
 
             result.Should().Be.EqualTo(expected);
         }
+
+        
+        [Theory]
+        [InlineData("abcdefghiABEDCFGHI", "efg", true)]
+        [InlineData("abcdefghiABEDCFGHI", "eFg", true)]
+        public void Contains_should_look_for_text_ignoring_case(string input, string toFind, bool expected)
+        {
+            var result = input.ContainsIgnoreCase(toFind);
+
+            result.Should().Be.EqualTo(expected );
+        }
+
     }
 }

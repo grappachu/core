@@ -43,7 +43,7 @@ namespace Grappachu.Core.Lang
             int startIndex, StringComparison comparison = StringComparison.Ordinal)
         {
             var idxStr = originalString.IndexOf(textBefore, startIndex, comparison);
-            var idxEnd = originalString.IndexOf(textAfter,  idxStr + 1, comparison);
+            var idxEnd = originalString.IndexOf(textAfter, idxStr + 1, comparison);
             if (idxStr >= 0 && idxEnd > 0)
             {
                 if (idxStr > idxEnd)
@@ -61,5 +61,19 @@ namespace Grappachu.Core.Lang
             idxEnd = idxStr;
             idxStr = temp;
         }
+
+
+        /// <summary>
+        ///     Checks if a string matches a text using ignoring case conventions
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="toCheck"></param>
+        /// <param name="comp"></param>
+        /// <returns></returns>
+        public static bool ContainsIgnoreCase(this string source, string toCheck, StringComparison comp = StringComparison.OrdinalIgnoreCase)
+        {
+            return source.IndexOf(toCheck, comp) >= 0;
+        }
+
     }
 }
