@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Grappachu.Core.Preview.IO;
-using Grappachu.Core.Security;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;

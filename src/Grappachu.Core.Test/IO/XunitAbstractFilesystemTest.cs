@@ -3,17 +3,27 @@ using System.IO;
 
 namespace Grappachu.Core.Test.IO
 {
-    public abstract class GenericFolderBasedTest
+    /// <summary>
+    /// Defines a base class for filesystem based tests
+    /// </summary>
+    public abstract class XunitAbstractFilesystemTest : IDisposable
     {
         private string _testRoot;
 
         protected string TestRoot => _testRoot;
 
+        protected XunitAbstractFilesystemTest()
+        {
+            OnSetUp();
+        }
+
         #region Protected Methods
 
-        protected string CreateFile(string path, bool makeReadonly = false)
+        protected string CreateFile(string relativeOrAbsoluteFilePath, bool makeReadonly = false)
         {
-            var target = Path.IsPathRooted(path) ? path : Path.Combine(_testRoot, path);
+            var target = Path.IsPathRooted(relativeOrAbsoluteFilePath) 
+                ? relativeOrAbsoluteFilePath 
+                : Path.Combine(_testRoot, relativeOrAbsoluteFilePath);
             File.WriteAllText(target, @"Test Content");
             if (makeReadonly)
             {
@@ -92,5 +102,19 @@ namespace Grappachu.Core.Test.IO
 
         #endregion
 
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                OnTearDown();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

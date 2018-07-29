@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.2.0] (2018-07-29)
+
+**Added:**
+
+- IO.DirectoryUtils: Utility and extension methods for directories
+- Lang.StringUtils: Estract - Method to find and get a subtring between text
+
 ##  [2.1.0] (2017-11-06)
 **Fixed:**
 

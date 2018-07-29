@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Grappachu.Core.Globalization;
 using Grappachu.Core.Globalization.Providers;
 using NUnit.Framework;
 using SharpTestsEx;

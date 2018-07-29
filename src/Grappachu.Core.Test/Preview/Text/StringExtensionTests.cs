@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using Grappachu.Core.Lang.Extensions;
+﻿using System.Drawing;
 using Grappachu.Core.Preview.Text;
 using NUnit.Framework;
 using SharpTestsEx;

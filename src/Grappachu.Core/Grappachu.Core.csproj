@@ -127,7 +127,9 @@
     <Compile Include="Collections\CollectionUtils.cs" />
     <Compile Include="Collections\EnumerableUtils.cs" />
     <Compile Include="Drawing\ImageUtils.cs" />
+    <Compile Include="IO\DirectoryUtils.cs" />
     <Compile Include="Lang\DateTimes.cs" />
+    <Compile Include="Lang\StringUtils.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeploymentWrapper.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeployUpdateInfo.cs" />
     <Compile Include="Preview\Deployment\ApplicationUpdater.cs" />
@@ -213,7 +215,6 @@
     <None Include="Grappachu.Core.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IO\" />
     <Folder Include="Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

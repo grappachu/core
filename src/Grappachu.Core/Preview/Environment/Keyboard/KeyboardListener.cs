@@ -73,7 +73,7 @@ namespace Grappachu.Core.Preview.Environment.Keyboard
         /// <summary>
         /// Hook ID
         /// </summary>
-        private readonly IntPtr _hookId = IntPtr.Zero;
+        private readonly IntPtr _hookId;
 
         /// <summary>
         /// Asynchronous callback hook.

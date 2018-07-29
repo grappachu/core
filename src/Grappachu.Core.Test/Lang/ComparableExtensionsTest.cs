@@ -1,6 +1,5 @@
 ﻿using System;
 using Grappachu.Core.Drawing;
-using Grappachu.Core.Lang;
 using Grappachu.Core.Lang.Extensions;
 using NUnit.Framework;
 

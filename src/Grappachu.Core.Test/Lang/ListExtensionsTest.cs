@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Grappachu.Core.Collections.Extensions;
-using Grappachu.Core.Lang;
-using Grappachu.Core.Lang.Extensions;
 using NUnit.Framework;
 using SharpTestsEx;
 
