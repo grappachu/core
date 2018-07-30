@@ -19,5 +19,21 @@ namespace Grappachu.Core.Collections
         {
             return enumerable == null || !enumerable.Any();
         }
+
+        /// <summary>
+        /// Splits a collection into smaller chunks
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">collection to split</param>
+        /// <param name="chunkSize">The maximum number of items for each chunk</param>
+        /// <returns></returns>
+        public static IEnumerable<IEnumerable<T>> ToChunks<T>(this IEnumerable<T> enumerable, int chunkSize)
+        {
+            var chunks = enumerable
+                .Select((s, i) => new { Value = s, Index = i })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(grp => grp.Select(x => x.Value));
+            return chunks;
+        }
     }
 }
