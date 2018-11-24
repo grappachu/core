@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Grappachu.Core.Preview.IO;
 
-namespace Grappachu.Core.Test.Preview.IO
+namespace Grappachu.Core.Test.IO.Abstract
 {
     public abstract class GenericFolderBasedTest
     {

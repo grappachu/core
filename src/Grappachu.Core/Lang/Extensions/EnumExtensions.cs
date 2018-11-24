@@ -9,7 +9,7 @@ namespace Grappachu.Core.Lang.Extensions
     public static class EnumExtensions
     {
         /// <summary>
-        /// Returns the value of <see cref="DescriptionAttribute"/>
+        ///     Returns the value of <see cref="DescriptionAttribute" />
         /// </summary>
         /// <param name="enumerationValue"></param>
         /// <typeparam name="T"></typeparam>
@@ -32,9 +32,10 @@ namespace Grappachu.Core.Lang.Extensions
                 if (attrs.Length > 0)
                 {
                     //Pull out the description value
-                    return ((DescriptionAttribute)attrs[0]).Description;
+                    return ((DescriptionAttribute) attrs[0]).Description;
                 }
             }
+
             //If we have no description attribute, just return the ToString of the enum
             return enumerationValue.ToString();
         }

@@ -15,10 +15,10 @@ namespace Grappachu.Core.Preview.Encryption
     {
         // This constant is used to determine the keysize of the encryption algorithm in bits.
         // We divide this by 8 within the code below to get the equivalent number of bytes.
-        private const int Keysize = 256;
+        private const int KEYSIZE = 256;
 
         // This constant determines the number of iterations for the password bytes generation function.
-        private const int DerivationIterations = 1000;
+        private const int DERIVATION_ITERATIONS = 1000;
 
         /// <summary>
         ///     Inizializza una nuova istanza di <see cref="AES" />
@@ -74,9 +74,9 @@ namespace Grappachu.Core.Preview.Encryption
             var ivStringBytes = Generate256BitsOfRandomEntropy();
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
-            using (var password = new Rfc2898DeriveBytes(encryptionKey, saltStringBytes, DerivationIterations))
+            using (var password = new Rfc2898DeriveBytes(encryptionKey, saltStringBytes, DERIVATION_ITERATIONS))
             {
-                var keyBytes = password.GetBytes(Keysize / 8);
+                var keyBytes = password.GetBytes(KEYSIZE / 8);
                 using (var symmetricKey = new RijndaelManaged())
                 {
                     symmetricKey.BlockSize = 256;
@@ -115,18 +115,18 @@ namespace Grappachu.Core.Preview.Encryption
             var cipherTextBytesWithSaltAndIv = encryptedText.ToByteArray(OutputFormat);
 
             // Get the saltbytes by extracting the first 32 bytes from the supplied cipherText bytes.
-            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
+            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(KEYSIZE / 8).ToArray();
             // Get the IV bytes by extracting the next 32 bytes from the supplied cipherText bytes.
-            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
+            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(KEYSIZE / 8).Take(KEYSIZE / 8).ToArray();
             // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
             var cipherTextBytes =
-                cipherTextBytesWithSaltAndIv.Skip(Keysize / 8 * 2)
-                    .Take(cipherTextBytesWithSaltAndIv.Length - Keysize / 8 * 2)
+                cipherTextBytesWithSaltAndIv.Skip(KEYSIZE / 8 * 2)
+                    .Take(cipherTextBytesWithSaltAndIv.Length - KEYSIZE / 8 * 2)
                     .ToArray();
 
-            using (var password = new Rfc2898DeriveBytes(encryptionKey, saltStringBytes, DerivationIterations))
+            using (var password = new Rfc2898DeriveBytes(encryptionKey, saltStringBytes, DERIVATION_ITERATIONS))
             {
-                var keyBytes = password.GetBytes(Keysize / 8);
+                var keyBytes = password.GetBytes(KEYSIZE / 8);
                 using (var symmetricKey = new RijndaelManaged())
                 {
                     symmetricKey.BlockSize = 256;

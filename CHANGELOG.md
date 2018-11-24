@@ -1,11 +1,28 @@
 # Change Log
 
+## [2.3.0]
+
+**Added:**
+
+- Lang.Extensions: OrDie() funcion to quickly check for null parameters
+- Drawing.ImageUtils: GetImage() loads image from disk and supports color management
+- IO.FileUtils: Adds sanitization for file names
+- IO.PathUtils: Adds a funcion to avoid usage of existing filenames
+- Collections.LinqUtils: Adds TakeLast(n) items from a collection
+
+**Moved from Preview:**
+
+- IO: TempFile, a disposable component to  write/delete temporary file in a small time lapse
+- IO.PathUtils: Clone() for duplicating direcory trees
+- Drawing.Extensions: StringExtensions to convert a string into a Bitmap
+
+
 ## [2.2.0] (2018-07-30)
 
 **Added:**
 
 - IO.DirectoryUtils: Utility and extension methods for directories
-- Lang.StringUtils: Estract - Method to find and get a subtring between text
+- Lang.StringUtils: Extract - Method to find and get a subtring between text
 - Collections.CollectionsUtils: ToChunk - Method to split an array into smaller parts
 
 ##  [2.1.0] (2017-11-06)

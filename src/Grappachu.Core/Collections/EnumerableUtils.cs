@@ -10,7 +10,7 @@ namespace Grappachu.Core.Collections
     public static class EnumerableUtils
     {
         /// <summary>
-        /// Checks if a collection is null or has no elements
+        ///     Checks if a collection is null or has no elements
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -21,7 +21,7 @@ namespace Grappachu.Core.Collections
         }
 
         /// <summary>
-        /// Splits a collection into smaller chunks
+        ///     Splits a collection into smaller chunks
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">collection to split</param>
@@ -30,7 +30,7 @@ namespace Grappachu.Core.Collections
         public static IEnumerable<IEnumerable<T>> ToChunks<T>(this IEnumerable<T> enumerable, int chunkSize)
         {
             var chunks = enumerable
-                .Select((s, i) => new { Value = s, Index = i })
+                .Select((s, i) => new {Value = s, Index = i})
                 .GroupBy(x => x.Index / chunkSize)
                 .Select(grp => grp.Select(x => x.Value));
             return chunks;

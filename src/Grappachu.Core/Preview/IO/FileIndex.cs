@@ -214,11 +214,8 @@ namespace Grappachu.Core.Preview.IO
             /// <filterpriority>2</filterpriority>
             public override int GetHashCode()
             {
-                unchecked
-                {
-                    int hashCode = Size.GetHashCode();
-                    return hashCode;
-                }
+                int hashCode = Size.GetHashCode();
+                return hashCode;
             }
 
             /// <summary>

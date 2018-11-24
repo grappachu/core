@@ -35,6 +35,7 @@ namespace Grappachu.Core.Drawing.Extensions
             {
                 graphics.DrawImage(image, 0, 0, result.Width, result.Height);
             }
+
             return result;
         }
 
@@ -95,22 +96,24 @@ namespace Grappachu.Core.Drawing.Extensions
                     g.SmoothingMode = SmoothingMode.Default;
                     break;
             }
+
             return g;
         }
 
 
         /// <summary>
-        ///      Converts an image into as specific <see cref="ImageFormat"/> an returns it as byte array.
+        ///     Converts an image into as specific <see cref="ImageFormat" /> an returns it as byte array.
         /// </summary>
         /// <param name="img"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        /// <remarks>This method is fastest than <see cref="GetBytes(System.Drawing.Image)" /></remarks>
+        /// <seealso cref="GetBytes(Image)" />
         public static byte[] GetBytes(this Image img, ImageFormat format)
         {
             using (var ms = new MemoryStream())
             {
-                img.Save(ms, format);
+                var imgFormat = format ?? img.RawFormat;
+                img.Save(ms, imgFormat);
                 return ms.ToArray();
             }
         }
@@ -121,9 +124,13 @@ namespace Grappachu.Core.Drawing.Extensions
         /// <param name="img"></param>
         /// <returns></returns>
         /// <remarks></remarks>
+        /// <remarks>
+        ///     This method is about 20% fastest than <see cref="GetBytes(Image, ImageFormat)" /> on a medium Windows10 based
+        ///     pc
+        /// </remarks>
         public static byte[] GetBytes(this Image img)
         {
-            var xByte = (byte[]) ImageConverter.ConvertTo(img, typeof (byte[]));
+            var xByte = (byte[]) ImageConverter.ConvertTo(img, typeof(byte[]));
             return xByte;
         }
 
@@ -157,18 +164,19 @@ namespace Grappachu.Core.Drawing.Extensions
             GraphicsQuality quality = GraphicsQuality.Default,
             PixelFormat format = PixelFormat.Format32bppArgb)
         {
-            var ratioX = (double) maxWidth/img.Width;
-            var ratioY = (double) maxHeight/img.Height;
+            var ratioX = (double) maxWidth / img.Width;
+            var ratioY = (double) maxHeight / img.Height;
             var ratio = Math.Min(ratioX, ratioY);
 
-            var newWidth = (int) (img.Width*ratio);
-            var newHeight = (int) (img.Height*ratio);
+            var newWidth = (int) (img.Width * ratio);
+            var newHeight = (int) (img.Height * ratio);
 
             var newImage = new Bitmap(newWidth, newHeight, format);
             using (var g = GetGraphics(newImage, quality))
             {
                 g.DrawImage(img, 0, 0, newWidth, newHeight);
             }
+
             return newImage;
         }
 
@@ -214,21 +222,21 @@ namespace Grappachu.Core.Drawing.Extensions
             var destY = 0;
 
             float nPercent;
-            var nPercentW = (float) width/sourceWidth;
-            var nPercentH = (float) height/sourceHeight;
+            var nPercentW = (float) width / sourceWidth;
+            var nPercentH = (float) height / sourceHeight;
             if (nPercentH < nPercentW)
             {
                 nPercent = nPercentH;
-                destX = Convert.ToInt16((width - sourceWidth*nPercent)/2);
+                destX = Convert.ToInt16((width - sourceWidth * nPercent) / 2);
             }
             else
             {
                 nPercent = nPercentW;
-                destY = Convert.ToInt16((height - sourceHeight*nPercent)/2);
+                destY = Convert.ToInt16((height - sourceHeight * nPercent) / 2);
             }
 
-            var destWidth = (int) Math.Min(Math.Ceiling(sourceWidth*nPercent), width);
-            var destHeight = (int) Math.Min(Math.Ceiling(sourceHeight*nPercent), height);
+            var destWidth = (int) Math.Min(Math.Ceiling(sourceWidth * nPercent), width);
+            var destHeight = (int) Math.Min(Math.Ceiling(sourceHeight * nPercent), height);
 
             var bmPhoto = new Bitmap(width, height, format);
             bmPhoto.SetResolution(img.HorizontalResolution, img.VerticalResolution);
@@ -241,6 +249,7 @@ namespace Grappachu.Core.Drawing.Extensions
                     new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
                     GraphicsUnit.Pixel);
             }
+
             return bmPhoto;
         }
 
@@ -289,8 +298,8 @@ namespace Grappachu.Core.Drawing.Extensions
 
             float nPercent;
 
-            var nPercentW = (float) width/sourceWidth;
-            var nPercentH = (float) height/sourceHeight;
+            var nPercentW = (float) width / sourceWidth;
+            var nPercentH = (float) height / sourceHeight;
 
             if (nPercentH < nPercentW)
             {
@@ -306,11 +315,11 @@ namespace Grappachu.Core.Drawing.Extensions
                     case ContentAlignment.BottomLeft:
                     case ContentAlignment.BottomRight:
                         destY = (int)
-                            (height - sourceHeight*nPercent);
+                            (height - sourceHeight * nPercent);
                         break;
                     default:
                         destY = (int)
-                            ((height - sourceHeight*nPercent)/2);
+                            ((height - sourceHeight * nPercent) / 2);
                         break;
                 }
             }
@@ -328,17 +337,17 @@ namespace Grappachu.Core.Drawing.Extensions
                     case ContentAlignment.MiddleRight:
                     case ContentAlignment.TopRight:
                         destX = (int)
-                            (width - sourceWidth*nPercent);
+                            (width - sourceWidth * nPercent);
                         break;
                     default:
                         destX = (int)
-                            ((width - sourceWidth*nPercent)/2);
+                            ((width - sourceWidth * nPercent) / 2);
                         break;
                 }
             }
 
-            var destWidth = (int) (sourceWidth*nPercent);
-            var destHeight = (int) (sourceHeight*nPercent);
+            var destWidth = (int) (sourceWidth * nPercent);
+            var destHeight = (int) (sourceHeight * nPercent);
 
             var bmPhoto = new Bitmap(width, height, format);
             bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
@@ -350,6 +359,7 @@ namespace Grappachu.Core.Drawing.Extensions
                     new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
                     GraphicsUnit.Pixel);
             }
+
             return bmPhoto;
         }
 
@@ -395,6 +405,7 @@ namespace Grappachu.Core.Drawing.Extensions
             {
                 throw new InvalidOperationException("Image size is bigger than canvas target size");
             }
+
             var bmPhoto = new Bitmap(width, height, format);
             bmPhoto.SetResolution(img.HorizontalResolution, img.VerticalResolution);
 
@@ -405,7 +416,7 @@ namespace Grappachu.Core.Drawing.Extensions
                 switch (imgAlignment)
                 {
                     case ContentAlignment.BottomCenter:
-                        destX = (width - img.Width)/2;
+                        destX = (width - img.Width) / 2;
                         destY = height - img.Height;
                         break;
                     case ContentAlignment.BottomLeft:
@@ -417,19 +428,19 @@ namespace Grappachu.Core.Drawing.Extensions
                         destY = height - img.Height;
                         break;
                     case ContentAlignment.MiddleCenter:
-                        destX = (width - img.Width)/2;
-                        destY = (height - img.Height)/2;
+                        destX = (width - img.Width) / 2;
+                        destY = (height - img.Height) / 2;
                         break;
                     case ContentAlignment.MiddleLeft:
                         destX = 0;
-                        destY = (height - img.Height)/2;
+                        destY = (height - img.Height) / 2;
                         break;
                     case ContentAlignment.MiddleRight:
                         destX = width - img.Width;
-                        destY = (height - img.Height)/2;
+                        destY = (height - img.Height) / 2;
                         break;
                     case ContentAlignment.TopCenter:
-                        destX = (width - img.Width)/2;
+                        destX = (width - img.Width) / 2;
                         destY = 0;
                         break;
                     case ContentAlignment.TopLeft:
@@ -451,6 +462,7 @@ namespace Grappachu.Core.Drawing.Extensions
                     new Rectangle(0, 0, img.Width, img.Height),
                     GraphicsUnit.Pixel);
             }
+
             return bmPhoto;
         }
 
@@ -467,8 +479,8 @@ namespace Grappachu.Core.Drawing.Extensions
             GraphicsQuality quality = GraphicsQuality.Default,
             PixelFormat format = PixelFormat.Format32bppArgb)
         {
-            var width = img.Width + 2*borderThickness;
-            var height = img.Height + 2*borderThickness;
+            var width = img.Width + 2 * borderThickness;
+            var height = img.Height + 2 * borderThickness;
             return img.EnlargeCanvas(width, height, borderColor,
                 ContentAlignment.MiddleCenter, quality, format);
         }

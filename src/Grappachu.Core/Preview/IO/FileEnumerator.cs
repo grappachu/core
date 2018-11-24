@@ -8,15 +8,11 @@ namespace Grappachu.Core.Preview.IO
     ///     Enumeratore di file da percorsi multipli
     /// </summary>
     public class FileEnumerator : IFileEnumerator
-    {
-     //   private readonly ILog _log = LogManager.GetLogger(typeof (FileEnumerator));
-
+    { 
         /// <summary>
         ///     Ottiene l'elenco dei percorsi da esplorare
         /// </summary>
         public ICollection<PathSearchInfo> Paths { get; }
-
-        #region Constructors
 
         /// <summary>
         ///     Crea una nuova istanza di FileEnumerator
@@ -34,8 +30,6 @@ namespace Grappachu.Core.Preview.IO
         {
             Paths = paths;
         }
-
-        #endregion
 
         /// <summary>
         ///     Restituisce un enumeratore che consente di scorrere l'insieme.

@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Grappachu.Core.Test.IO
 {
+
     /// <summary>
     /// Defines a base class for filesystem based tests
     /// </summary>

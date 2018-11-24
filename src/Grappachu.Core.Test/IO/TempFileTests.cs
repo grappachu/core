@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
-using Grappachu.Core.Preview.IO;
+using Grappachu.Core.IO;
+using Grappachu.Core.Test.IO.Abstract;
 using NUnit.Framework;
 using SharpTestsEx;
 
-namespace Grappachu.Core.Test.Preview.IO
+namespace Grappachu.Core.Test.IO
 {
     [TestFixture]
     public class TempFileTests : GenericFolderBasedTest

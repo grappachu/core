@@ -51,5 +51,39 @@ namespace Grappachu.Core.Lang.Extensions
                 return alternative;
             return preferred.CompareTo(default(T)) != 0 ? preferred : alternative;
         }
+
+        /// <summary>
+        ///     Checks the <paramref name="maybeNullValue" /> value and returns itself when not null. Otherwise throws a
+        ///     <see cref="NullReferenceException" />  whith the provided error message.
+        /// </summary>
+        /// <param name="maybeNullValue">The parameter to check</param>
+        /// <param name="errorMessage">The error message supplied</param>
+        /// <exception cref="NullReferenceException">When the supplied value is null</exception>
+        /// <returns>A non null object</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     setupRequest.Mode.OrDie("You didn't specify a installation mode");
+        ///     setupRequest.TargetFolder.OrDie("You didn't specify your target folder");
+        ///
+        ///     // request is valid
+        ///     _processor.Process(request);
+        /// }
+        /// catch(NullReferenceExteption ex)
+        /// {
+        ///     NotifyError(ex.Message);
+        /// }
+        /// </code>  
+        /// </example>
+        public static object OrDie(this object maybeNullValue, string errorMessage)
+        {
+            if (maybeNullValue == null)
+            {
+                throw new NullReferenceException(errorMessage);
+            }
+
+            return maybeNullValue;
+        } 
     }
 }

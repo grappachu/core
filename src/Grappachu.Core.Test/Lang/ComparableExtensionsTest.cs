@@ -2,6 +2,8 @@
 using Grappachu.Core.Drawing;
 using Grappachu.Core.Lang.Extensions;
 using NUnit.Framework;
+using SharpTestsEx;
+using Xunit;
 
 namespace Grappachu.Core.Test.Lang
 {
@@ -49,6 +51,34 @@ namespace Grappachu.Core.Test.Lang
         public IComparable Or_test(IComparable pref, IComparable alt)
         {
             return pref.Or(alt);
+        }
+
+
+        [Xunit.Theory]
+        [InlineData(null, true)]
+        [InlineData("", false)]
+        [InlineData("abc", false)]
+        public void OrThrow_should_throw_new_exception(object param, bool expectThrows)
+        {
+            const string message = "no value provided";
+            Func<object> getFunc = () => param;
+
+            object res = null;
+            var ex = Record.Exception(() =>
+            {
+                res = getFunc.Invoke().OrDie(message);
+            });
+
+            if (expectThrows)
+            {
+                res.Should().Be.Null();
+                ex.Should().Be.OfType<NullReferenceException>();
+                ex?.Message.Should().Be.EqualTo(message);
+            }
+            else
+            {
+                res.Should().Be.EqualTo(param);
+            }
         }
     }
 }

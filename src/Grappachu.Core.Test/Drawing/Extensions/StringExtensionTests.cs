@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
-using Grappachu.Core.Preview.Text;
+using Grappachu.Core.Drawing.Extensions;
 using NUnit.Framework;
 using SharpTestsEx;
 
-namespace Grappachu.Core.Test.Preview.Text
+namespace Grappachu.Core.Test.Drawing.Extensions
 {
     [TestFixture]
     public class StringExtensionTests
@@ -16,14 +16,10 @@ namespace Grappachu.Core.Test.Preview.Text
                                 "all'Orco generose travolse alme d'eroi, e di cani \n" +
                                 "e d'augelli orrido pasto lor salme abbandonò....";
 
-            Bitmap image = text.ToBitmap(new Font("Arial", 10), Brushes.Red);
+            var image = text.ToBitmap(new Font("Arial", 10), Brushes.Red);
 
             image.Width.Should().Be.IncludedIn(250, 400);
-            image.Height.Should().Be.IncludedIn(70, 80);
-
-            image.Save("x:\\ttt.jpg");
+            image.Height.Should().Be.IncludedIn(60, 80);
         }
-
-    
     }
 }

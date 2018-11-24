@@ -16,7 +16,10 @@ namespace Grappachu.Core.IO
         /// <returns></returns>
         public static bool IsEmpty(this DirectoryInfo pathToCheck, bool ignoreEmptyFolders = false)
         {
-            if (!ignoreEmptyFolders) return !pathToCheck.GetFiles().Any() && !pathToCheck.GetDirectories().Any();
+            if (!ignoreEmptyFolders)
+            {
+                return !pathToCheck.GetFiles().Any() && !pathToCheck.GetDirectories().Any();
+            }
 
             var finfos = pathToCheck.GetFiles("*", SearchOption.AllDirectories);
             return !finfos.Any();

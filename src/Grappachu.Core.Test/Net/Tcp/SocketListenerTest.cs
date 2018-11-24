@@ -10,13 +10,13 @@ namespace Grappachu.Core.Test.Net.Tcp
     [TestFixture]
     class SocketListenerTest 
     {
-        private const int Port = 11342;
+        private const int PORT = 11342;
         private SocketListener _sut;
 
         [SetUp]
         public void SetUp()
         {
-            _sut = new SocketListener(IPAddress.Any, Port);
+            _sut = new SocketListener(IPAddress.Any, PORT);
         }
 
         [TearDown]
@@ -107,7 +107,7 @@ namespace Grappachu.Core.Test.Net.Tcp
 
         private string SendMessage(string message)
         {
-            using (var client = new TcpClient("localhost", Port))
+            using (var client = new TcpClient("localhost", PORT))
             {
                 var data = System.Text.Encoding.ASCII.GetBytes(message);
                 String responseData;

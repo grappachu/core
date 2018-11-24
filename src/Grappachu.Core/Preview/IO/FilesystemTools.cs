@@ -102,39 +102,6 @@ namespace Grappachu.Core.Preview.IO
         }
 
 
-        /// <summary>
-        ///     Clones a file or a directory tree to a new path.
-        ///     All files in the target will be erased.
-        /// </summary>
-        public static void ClonePath(string sourcePath, string targetPath)
-        {
-            if (IsDirectory(sourcePath))
-            {
-                if (Exists(targetPath))
-                {
-                    SafeDelete(targetPath, true, true);
-                }
-                Directory.CreateDirectory(targetPath);
-
-                // Create all of the directories
-                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*",
-                    SearchOption.AllDirectories))
-                {
-                    Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-                }
-
-                //Copy all the files & Replaces any files with the same name
-                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*",
-                    SearchOption.AllDirectories))
-                {
-                    File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-                }
-            }
-            else
-            {
-                File.Copy(sourcePath, targetPath, true);
-            }
-        }
 
 
         /// <summary>
@@ -162,5 +129,6 @@ namespace Grappachu.Core.Preview.IO
                 Directory.CreateDirectory(target);
             }
         }
+        
     }
 }

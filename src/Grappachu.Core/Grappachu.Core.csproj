@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\Packages\UtilPack.NuGet.MSBuild.2.9.0\build\UtilPack.NuGet.MSBuild.props" Condition="Exists('..\..\..\..\Packages\UtilPack.NuGet.MSBuild.2.9.0\build\UtilPack.NuGet.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -126,9 +129,13 @@
   <ItemGroup>
     <Compile Include="Collections\CollectionUtils.cs" />
     <Compile Include="Collections\EnumerableUtils.cs" />
+    <Compile Include="Collections\LinqUtils.cs" />
     <Compile Include="Drawing\ImageUtils.cs" />
     <Compile Include="IO\DirectoryUtils.cs" />
+    <Compile Include="IO\FileUtils.cs" />
+    <Compile Include="IO\PathUtils.cs" />
     <Compile Include="Lang\DateTimes.cs" />
+    <Compile Include="Lang\EnumHelper.cs" />
     <Compile Include="Lang\StringUtils.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeploymentWrapper.cs" />
     <Compile Include="Preview\Deployment\ApplicationDeployUpdateInfo.cs" />
@@ -184,8 +191,8 @@
     <Compile Include="Preview\Net\Tcp\SocketListener.cs" />
     <Compile Include="Preview\Net\Url.cs" />
     <Compile Include="Preview\IO\FilesystemTools.cs" />
-    <Compile Include="Preview\IO\TempFile.cs" />
-    <Compile Include="Preview\Text\StringExtension.cs" />
+    <Compile Include="IO\TempFile.cs" />
+    <Compile Include="Drawing\Extensions\StringExtension.cs" />
     <Compile Include="Messaging\IConsumer.cs" />
     <Compile Include="Messaging\IPublisher.cs" />
     <Compile Include="Messaging\QueueException.cs" />
@@ -212,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Grappachu.Core.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Net\" />
@@ -233,5 +241,8 @@
   </Target>
   <Import Project="$(ProjectDir)..\..\.nuget\NuGet.targets" Condition="Exists('$(ProjectDir)..\..\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('..\..\..\..\Packages\GitVersionTask.4.0.0\build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\Packages\GitVersionTask.4.0.0\build\GitVersionTask.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\Packages\UtilPack.NuGet.MSBuild.2.9.0\build\UtilPack.NuGet.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\Packages\UtilPack.NuGet.MSBuild.2.9.0\build\UtilPack.NuGet.MSBuild.props'))" />
   </Target>
+  <Import Project="..\..\..\..\Packages\GitVersionTask.4.0.0\build\GitVersionTask.targets" Condition="Exists('..\..\..\..\Packages\GitVersionTask.4.0.0\build\GitVersionTask.targets')" />
 </Project>

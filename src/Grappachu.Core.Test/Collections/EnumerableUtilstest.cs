@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Grappachu.Core.Collections;
 using SharpTestsEx;
 using Xunit;
@@ -9,6 +8,7 @@ namespace Grappachu.Core.Test.Collections
     public class EnumerableUtilsTest
     {
         [Fact]
+
         public void IsNullOrEmpty_should_be_false_only_when_array_has_items()
         {
             object[] noArray = null;

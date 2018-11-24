@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using Grappachu.Core.IO;
 using Grappachu.Core.Preview.IO;
+using Grappachu.Core.Test.IO.Abstract;
 using NUnit.Framework;
 using SharpTestsEx;
 
@@ -24,26 +26,7 @@ namespace Grappachu.Core.Test.Preview.IO
 
         #endregion
 
-        [Test]
-        public void ClonePathTest()
-        {
-            var source = CreateDir(@"sourceDir");
-            var child1 = CreateFile(@"sourceDir\child1");
-            CreateDir(@"sourceDir\subDir");
-            var subChild1 = CreateFile(@"sourceDir\subDir\subChild1");
-            var subChild2 = CreateFile(@"sourceDir\subDir\subChild2");
-
-            var target = CreateDir("targetDir");
-            var childToErase = CreateFile(@"targetDir\childToErase");
-
-            FilesystemTools.ClonePath(source, target);
-
-            File.Exists(childToErase).Should().Be.False();
-            File.Exists(child1).Should().Be.True();
-            File.Exists(subChild1).Should().Be.True();
-            File.Exists(subChild2).Should().Be.True();
-        }
-
+      
         #region Exists
 
         [Test]

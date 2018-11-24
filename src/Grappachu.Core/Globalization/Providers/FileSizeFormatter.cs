@@ -15,16 +15,16 @@ namespace Grappachu.Core.Globalization.Providers
     /// </example>
     public sealed class FileSizeFormatter : IFormatProvider, ICustomFormatter
     {
-        private const string DefaultFormat = "g";
+        private const string DEFAULT_FORMAT = "g";
 
-        private const long Kilobyte = 1024;
-        private const long Megabyte = 1024 * Kilobyte;
-        private const long Gigabyte = 1024 * Megabyte;
-        private const long Terabyte = 1024 * Gigabyte;
-        private const long Petabyte = 1024 * Terabyte;
-        private const decimal Exabyte = 1024 * Petabyte;
-        private const decimal Ettabyte = 1024 * Exabyte;
-        private const decimal Yottabyte = 1024 * Ettabyte;
+        private const long KILOBYTE = 1024;
+        private const long MEGABYTE = 1024 * KILOBYTE;
+        private const long GIGABYTE = 1024 * MEGABYTE;
+        private const long TERABYTE = 1024 * GIGABYTE;
+        private const long PETABYTE = 1024 * TERABYTE;
+        private const decimal EXABYTE = 1024 * PETABYTE;
+        private const decimal ETTABYTE = 1024 * EXABYTE;
+        private const decimal YOTTABYTE = 1024 * ETTABYTE;
 
 
         /// <summary>
@@ -57,9 +57,9 @@ namespace Grappachu.Core.Globalization.Providers
                 throw new ArgumentNullException(nameof(arg));
 
             if (string.IsNullOrEmpty(format))
-                format = DefaultFormat;
+                format = DEFAULT_FORMAT;
 
-            if (format == DefaultFormat)
+            if (format == DEFAULT_FORMAT)
             {
                 long data;
                 if (long.TryParse(arg.ToString(), out data))
@@ -83,14 +83,14 @@ namespace Grappachu.Core.Globalization.Providers
 
         private string DoFormat(long byteSize)
         {
-            if (byteSize > Yottabyte) return ((float) byteSize / Terabyte).ToString("0.00 Yb", Culture);
-            if (byteSize > Ettabyte) return ((float) byteSize / Terabyte).ToString("0.00 Zb", Culture);
-            if (byteSize > Exabyte) return ((float) byteSize / Terabyte).ToString("0.00 Eb", Culture);
-            if (byteSize > Petabyte) return ((float) byteSize / Terabyte).ToString("0.00 Pb", Culture);
-            if (byteSize > Terabyte) return ((float) byteSize / Terabyte).ToString("0.00 Tb", Culture);
-            if (byteSize > Gigabyte) return ((float) byteSize / Gigabyte).ToString("0.00 Gb", Culture);
-            if (byteSize > Megabyte) return ((float) byteSize / Megabyte).ToString("0.00 Mb", Culture);
-            if (byteSize > Kilobyte) return ((float) byteSize / Kilobyte).ToString("0.00 Kb", Culture);
+            if (byteSize > YOTTABYTE) return ((float) byteSize / TERABYTE).ToString("0.00 Yb", Culture);
+            if (byteSize > ETTABYTE) return ((float) byteSize / TERABYTE).ToString("0.00 Zb", Culture);
+            if (byteSize > EXABYTE) return ((float) byteSize / TERABYTE).ToString("0.00 Eb", Culture);
+            if (byteSize > PETABYTE) return ((float) byteSize / TERABYTE).ToString("0.00 Pb", Culture);
+            if (byteSize > TERABYTE) return ((float) byteSize / TERABYTE).ToString("0.00 Tb", Culture);
+            if (byteSize > GIGABYTE) return ((float) byteSize / GIGABYTE).ToString("0.00 Gb", Culture);
+            if (byteSize > MEGABYTE) return ((float) byteSize / MEGABYTE).ToString("0.00 Mb", Culture);
+            if (byteSize > KILOBYTE) return ((float) byteSize / KILOBYTE).ToString("0.00 Kb", Culture);
             return byteSize + " Byte";
         }
     }

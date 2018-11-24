@@ -5,7 +5,6 @@ using Xunit;
 
 namespace Grappachu.Core.Test.Lang
 {
-
     public class StringUtilsTest
     {
         [Theory]

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-namespace Grappachu.Core.Preview.Text
+namespace Grappachu.Core.Drawing.Extensions
 {
     /// <summary>
     ///     Adds extension methods for manipulating strings

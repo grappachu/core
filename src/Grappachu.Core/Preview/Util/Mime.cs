@@ -7,7 +7,7 @@ namespace Grappachu.Core.Preview.Util
     /// </summary>
     public class Mime
     {
-        private const string DefaultKey = "*";
+        private const string DEFAULT_KEY = "*";
         private static Dictionary<string, string> _dictionary;
         
         private static Dictionary<string, string> Dictionary
@@ -33,7 +33,7 @@ namespace Grappachu.Core.Preview.Util
         /// </remarks>
         private static void OnAddTypes()
         {
-            _dictionary.Add(DefaultKey, "application/octet-stream");
+            _dictionary.Add(DEFAULT_KEY, "application/octet-stream");
             _dictionary.Add("323", "text/h323");
             _dictionary.Add("acx", "application/internet-property-stream");
             _dictionary.Add("ai", "application/postscript");
@@ -237,7 +237,7 @@ namespace Grappachu.Core.Preview.Util
             {
                 return _dictionary[key];
             }
-            return _dictionary[DefaultKey];
+            return _dictionary[DEFAULT_KEY];
         }
     }
 }
