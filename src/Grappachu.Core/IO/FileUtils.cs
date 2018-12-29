@@ -27,5 +27,6 @@ namespace Grappachu.Core.IO
 
             return string.IsNullOrEmpty(extension) ? entryName : $"{name}.{extension}";
         }
+        
     }
 }

@@ -8,15 +8,15 @@ namespace Grappachu.Core.Test.IO
     public class PathUtilsTest : XunitAbstractFilesystemTest
     {
         [Fact]
-        public void SuggestFilename_should_numerate_files_while_file_exist()
+        public void GetSafePath_should_numerate_files_while_file_exist()
         {
             File.WriteAllText(Path.Combine(TestRoot, "testfile.txt"), "a");
             File.WriteAllText(Path.Combine(TestRoot, "testfile (2).txt"), "b");
             File.WriteAllText(Path.Combine(TestRoot, "testfile (3).txt"), "c");
 
-            var fname = PathUtils.SafeCombine(TestRoot, "testfile.txt", "{0} ({1}).{2}", 2);
+            var fname = PathUtils.GetSafePath(TestRoot, "testfile.txt", "{0} ({1}).{2}", 2);
 
-            fname.Should().Be.EqualTo("testfile (4).txt");
+            fname.Should().Be.EqualTo(Path.Combine(TestRoot, "testfile (4).txt"));
         }
 
 

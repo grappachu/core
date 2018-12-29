@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.3.1]
+
+**Fixed:**
+
+- Lang.Extensions: OrDie() funcion now works with different types
+- IO.PathUtils: SafeCombine is replaced by GetSafePath to return full path
+
+
 ## [2.3.0]
 
 **Added:**
