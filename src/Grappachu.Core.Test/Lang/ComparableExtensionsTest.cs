@@ -58,12 +58,12 @@ namespace Grappachu.Core.Test.Lang
         [InlineData(null, true)]
         [InlineData("", false)]
         [InlineData("abc", false)]
-        public void OrThrow_should_throw_new_exception(object param, bool expectThrows)
+        public void OrDie_should_throw_new_exception(string param, bool expectThrows)
         {
             const string message = "no value provided";
-            Func<object> getFunc = () => param;
+            Func<string> getFunc = () => param;
 
-            object res = null;
+            string res = null;
             var ex = Record.Exception(() =>
             {
                 res = getFunc.Invoke().OrDie(message);

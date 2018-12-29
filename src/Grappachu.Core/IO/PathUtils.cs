@@ -11,7 +11,7 @@ namespace Grappachu.Core.IO
     public static class PathUtils
     {
         /// <summary>
-        ///     Creates a filename based on <paramref name="desiredFilename" /> which actually doesn't exist in the
+        ///     Creates a relative filename based on <paramref name="desiredFilename" /> which actually doesn't exist in the
         ///     <paramref name="targetDirectory" /> path by adding some numbers at the end.
         /// </summary>
         /// <param name="targetDirectory">The firectory where the file should be saved</param>
@@ -24,14 +24,15 @@ namespace Grappachu.Core.IO
         ///  var productTitle = "My awesome product!";
         ///  var candidateName = productTitle.ToFilename("htm")
         /// 
-        ///  var fullPath1 = PathUtils.SafeCombine( "C:\Products", candidateName);
-        ///  SaveProduct(fullPath1)
+        ///  var relativePath1 = PathUtils.SafeCombine( "C:\\Products", candidateName);
+        ///  SaveProduct(relativePath1)
         ///  
-        ///  var fullPath2 =  PathUtils.SafeCombine( "C:\Products",candidateName);
-        ///  SaveProduct(fullPath1)
+        ///  var relativePath2 =  PathUtils.SafeCombine( "C:\\Products",candidateName);
+        ///  SaveProduct(relativePath2)
         ///  // path 2 will be different from path 1 
         /// </code>
         /// </example>
+        [Obsolete("Use PathUtils.GetSafePath()")]
         public static string SafeCombine(string targetDirectory, string desiredFilename,
             string template = "{0} ({1}).{2}", int countStart = 1)
         {
@@ -49,6 +50,54 @@ namespace Grappachu.Core.IO
 
             return candidate;
         }
+
+        /// <summary>
+        ///     Creates a full path based on <paramref name="desiredFilename" /> which actually doesn't exist in the
+        ///     <paramref name="targetDirectory" /> path by adding some numbers at the end when needed.
+        /// </summary>
+        /// <param name="targetDirectory">The directory where the file should be saved</param>
+        /// <param name="desiredFilename">The desired filename for the object</param>
+        /// <param name="template">The custom template used to new generated files. Placehoders are {0} = file name without extension, {1} = generated number, {2} = file extension.</param>
+        /// <param name="countStart">The start number for numerating</param>
+        /// <returns>A new relative filename for the file</returns>
+        /// <example>
+        /// <code>
+        ///  var productTitle = "My awesome product!";
+        ///  var candidateName = productTitle.ToFilename("htm")
+        /// 
+        /// // candidateName will be like: My_awesome_product_.htm
+        /// 
+        ///  var fullPath1 = PathUtils.SafeCombine( "C:\\Products", candidateName);
+        ///  SaveProduct(fullPath1)
+        ///  
+        /// // path 1 will be like: C:\Products\My_awesome_product_.htm
+        /// 
+        ///  var fullPath2 =  PathUtils.SafeCombine( "C:\\Products",candidateName);
+        ///  SaveProduct(fullPath1)
+        ///  
+        /// // path 2 will be like: C:\Products\My_awesome_product_(1).htm
+        ///  
+        /// </code>
+        /// </example>
+        public static string GetSafePath(string targetDirectory, string desiredFilename,
+            string template = "{0}({1}).{2}", int countStart = 1)
+        {
+            var root = targetDirectory;
+            var fname = Path.GetFileNameWithoutExtension(desiredFilename);
+            var ext = Path.GetExtension(desiredFilename).Or(String.Empty).Trim('.');
+
+            var candidate = desiredFilename;
+            var idx = countStart - 1;
+            while (FilesystemTools.Exists(Path.Combine(root, candidate)))
+            {
+                idx++;
+                candidate = String.Format(template, fname, idx, ext);
+            }
+
+            return candidate;
+        }
+
+
 
 
         /// <summary>

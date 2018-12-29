@@ -76,7 +76,7 @@ namespace Grappachu.Core.Lang.Extensions
         /// }
         /// </code>  
         /// </example>
-        public static object OrDie(this object maybeNullValue, string errorMessage)
+        public static T OrDie<T>(this T maybeNullValue, string errorMessage)
         {
             if (maybeNullValue == null)
             {
